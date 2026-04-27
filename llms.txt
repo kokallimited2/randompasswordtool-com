@@ -1,0 +1,18 @@
+# RandomPasswordTool — llms.txt
+# https://llmstxt.org
+
+> Truly random password tool — cryptographically secure passwords with entropy explained.
+
+## Tool
+- [Random Password Tool](https://randompasswordtool.com/): Truly random password tool — cryptographically secure passwords with entropy explained.
+
+## Blog
+- [Blog](https://randompasswordtool.com/blog/): Guides and tips about random password generator, password entropy, cryptographic security.
+
+## Key Facts
+- Free to use, no sign-up required
+- Client-side only — no data stored or transmitted
+- Cryptographically secure (crypto.getRandomValues)
+
+## Affiliate Disclosure
+This site may contain affiliate links to password managers.

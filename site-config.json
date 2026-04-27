@@ -1,0 +1,28 @@
+{
+  "id": "randompasswordtool-com",
+  "name": "RandomPasswordTool",
+  "domain": "randompasswordtool.com",
+  "url": "https://randompasswordtool.com",
+  "emoji": "🎲",
+  "brand": "RandomPasswordTool",
+  "angle": "Randomness emphasis. Explains entropy, randomness algorithms. Techy but accessible.",
+  "primaryColor": "indigo",
+  "description": "Truly random password tool — cryptographically secure passwords with entropy explained.",
+  "shortDescription": "Random Password Tool",
+  "topic": "random password generator, password entropy, cryptographic security",
+  "tags": [
+    "random",
+    "entropy",
+    "passwords",
+    "cryptographic",
+    "tool"
+  ],
+  "active": true,
+  "repo": "kokallimited2/randompasswordtool-com",
+  "deployDay": 2,
+  "deploySlot": "18:00",
+  "posts": [],
+  "defaultKeywords": "random password generator, password entropy, cryptographic security",
+  "blogDescription": "Guides, tips and news about random password generator, password entropy, cryptographic security.",
+  "generatedAt": "2026-04-26"
+}
