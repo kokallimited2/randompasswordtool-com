@@ -3,11 +3,11 @@
   "name": "RandomPasswordTool",
   "domain": "randompasswordtool.com",
   "url": "https://randompasswordtool.com",
-  "emoji": "🎲",
+  "emoji": "\ud83c\udfb2",
   "brand": "RandomPasswordTool",
   "angle": "Randomness emphasis. Explains entropy, randomness algorithms. Techy but accessible.",
   "primaryColor": "indigo",
-  "description": "Truly random password tool — cryptographically secure passwords with entropy explained.",
+  "description": "Truly random password tool \u2014 cryptographically secure passwords with entropy explained.",
   "shortDescription": "Random Password Tool",
   "topic": "random password generator, password entropy, cryptographic security",
   "tags": [
@@ -24,5 +24,6 @@
   "posts": [],
   "defaultKeywords": "random password generator, password entropy, cryptographic security",
   "blogDescription": "Guides, tips and news about random password generator, password entropy, cryptographic security.",
-  "generatedAt": "2026-04-26"
+  "generatedAt": "2026-04-26",
+  "siteName": "RandomPasswordTool"
 }
