@@ -1,5 +1,23 @@
 [
   {
+    "slug": "auditing-your-passwords-a-step-by-step-security-checkup",
+    "title": "Auditing Your Passwords: A Step-by-Step Security Checkup",
+    "excerpt": "When did you last review all your passwords? A regular audit is essential to catch weak, old, or reused credentials before attackers do.",
+    "date": "2026-04-29",
+    "category": "Guides",
+    "readTime": "5 min read",
+    "keywords": "password audit, security checkup, weak passwords, password review, account security audit"
+  },
+  {
+    "slug": "what-happens-to-stolen-passwords-on-the-dark-web",
+    "title": "What Happens to Stolen Passwords on the Dark Web",
+    "excerpt": "When a site gets breached, where do your passwords actually go? The answer reveals why password hygiene is so critical.",
+    "date": "2026-04-29",
+    "category": "Data Breach",
+    "readTime": "5 min read",
+    "keywords": "dark web passwords, stolen credentials, password breach, dark web monitoring, credential market"
+  },
+  {
     "slug": "how-long-would-it-take-to-crack-your-password",
     "title": "How Long Would It Take to Crack Your Password?",
     "excerpt": "Password cracking speeds have increased dramatically with modern GPUs. Find out how your current passwords measure up.",
