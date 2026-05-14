@@ -8,7 +8,8 @@
   <link rel="canonical" href="https://randompasswordtool.com/">
   <meta property="og:title" content="Random Password Tool — Programmable CSPRNG Password API">
   <meta property="og:description" content="Cryptographically secure password generation. CLI-ready. Pipeline-safe. Live API simulator with code in 5 languages.">
-  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://randompasswordtool.com/assets/img/og-home.jpg">
+<meta property="og:type" content="website">
   <meta property="og:url" content="https://randompasswordtool.com/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='3' fill='%230d1117'/><text x='7' y='28' font-family='monospace' font-size='22' fill='%2322d3ee'>&#x3e;_</text></svg>">
@@ -23,7 +24,7 @@
   <!-- Schema 3: WebSite -->
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"https://randompasswordtool.com/","name":"Random Password Tool","potentialAction":{"@type":"SearchAction","target":"https://randompasswordtool.com/blog.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
   <!-- Schema 4: FAQPage -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is Math.random() unsafe for password generation?","acceptedAnswer":{"@type":"Answer","text":"JavaScript's Math.random() uses the Mersenne Twister PRNG algorithm, which is not cryptographically secure. Its internal state (19,937 bits) can be fully recovered after observing 624 consecutive outputs, making it predictable. For password generation, always use crypto.getRandomValues() which calls the operating system's CSPRNG (e.g. /dev/urandom on Linux, CryptGenRandom on Windows)."}},{"@type":"Question","name":"What CSPRNG standard does this tool use?","acceptedAnswer":{"@type":"Answer","text":"This tool uses the Web Crypto API's crypto.getRandomValues(), which is backed by the operating system's cryptographically secure pseudorandom number generator (CSPRNG). This is consistent with NIST SP 800-90A (Recommendation for Random Number Generation Using Deterministic Random Bit Generators) and RFC 4086 (Randomness Requirements for Security)."}},{"@type":"Question","name":"Can I use the generated passwords in production pipelines?","acceptedAnswer":{"@type":"Answer","text":"Yes. All generation uses crypto.getRandomValues() client-side — passwords are never transmitted to any server. For CI/CD pipelines, copy the generated output in your preferred format (JSON, CSV, or plain text) and inject into your secrets manager (HashiCorp Vault, AWS Secrets Manager, GitHub Actions secrets)."}},{"@type":"Question","name":"What does the format parameter control?","acceptedAnswer":{"@type":"Answer","text":"The format parameter controls the response structure. json returns a structured object with metadata including count, length, charset, and a passwords array. csv returns comma-separated values suitable for spreadsheet import or pipeline processing. text returns one password per line, suitable for direct shell consumption."}},{"@type":"Question","name":"How does the charset parameter work?","acceptedAnswer":{"@type":"Answer","text":"The charset parameter accepts a string of flags: u for uppercase (A-Z), l for lowercase (a-z), n for numbers (0-9), s for symbols (!@#$), and a for exclude_ambiguous. Example: charset=uln generates passwords using uppercase, lowercase, and numbers only — no symbols, no ambiguous characters."}},{"@type":"Question","name":"Is there a rate limit on the API?","acceptedAnswer":{"@type":"Answer","text":"The free tier allows 1,000 requests per day. The API simulator on this page runs entirely client-side — no requests are made to any server, so simulator use does not count against rate limits. API key authentication is required for production use."}},{"@type":"Question","name":"How do I integrate this into a GitHub Actions workflow?","acceptedAnswer":{"@type":"Answer","text":"Use the API endpoint in a workflow step with curl, then pipe the output to your secrets configuration. Store the generated password as a masked secret using GitHub's secrets API or inject directly into your deployment environment variables. Never log generated passwords in workflow output."}},{"@type":"Question","name":"What is the maximum password length supported?","acceptedAnswer":{"@type":"Answer","text":"The API supports passwords from 8 to 128 characters. For most use cases, 20-32 characters with all character classes provides sufficient entropy. For machine-to-machine credentials (API keys, service accounts), 32-64 characters is recommended. NIST SP 800-63B (2025) mandates that verifiers accept passwords up to at least 64 characters."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is Math.random() unsafe for password generation?","acceptedAnswer":{"@type":"Answer","text":"JavaScript's Math.random() uses the Mersenne Twister PRNG algorithm, which is not cryptographically secure. Its internal state (19,937 bits) can be fully recovered after observing 624 consecutive outputs, making it predictable. For password generation, always use crypto.getRandomValues() which calls the operating system's CSPRNG (e.g. /dev/urandom on Linux, CryptGenRandom on Windows)."}},{"@type":"Question","name":"What CSPRNG standard does this tool use?","acceptedAnswer":{"@type":"Answer","text":"This tool uses the Web Crypto API's crypto.getRandomValues(), which is backed by the operating system's cryptographically secure pseudorandom number generator (CSPRNG). This is consistent with NIST SP 800-90A (Recommendation for Random Number Generation Using Deterministic Random Bit Generators) and RFC 4086 (Randomness Requirements for Security)."}},{"@type":"Question","name":"Can I use the generated passwords in production pipelines?","acceptedAnswer":{"@type":"Answer","text":"Yes. All generation uses crypto.getRandomValues() client-side — passwords are never transmitted to any server. For CI/CD pipelines, copy the generated output in your preferred format (JSON, CSV, or plain text) and inject into your secrets manager (HashiCorp Vault, AWS Secrets Manager, GitHub Actions secrets)."}},{"@type":"Question","name":"What does the format parameter control?","acceptedAnswer":{"@type":"Answer","text":"The format parameter controls the response structure. json returns a structured object with metadata including count, length, charset, and a passwords array. csv returns comma-separated values suitable for spreadsheet import or pipeline processing. text returns one password per line, suitable for direct shell consumption."}},{"@type":"Question","name":"How does the charset parameter work?","acceptedAnswer":{"@type":"Answer","text":"The charset parameter accepts a string of flags: u for uppercase (A-Z), l for lowercase (a-z), n for numbers (0-9), s for symbols (!@#$), and a for exclude_ambiguous. Example: charset=uln generates passwords using uppercase, lowercase, and numbers only — no symbols, no ambiguous characters."}},{"@type":"Question","name":"Is there a rate limit on the API?","acceptedAnswer":{"@type":"Answer","text":"The free tier allows 1,000 requests per day. The API simulator on this page runs entirely client-side — no requests are made to any server, so simulator use does not count against rate limits. API key authentication is required for production use."}},{"@type":"Question","name":"How do I integrate this into a GitHub Actions workflow?","acceptedAnswer":{"@type":"Answer","text":"Use the API endpoint in a workflow step with curl, then pipe the output to your secrets configuration. Store the generated password as a masked secret using GitHub's secrets API or inject directly into your deployment environment variables. Never log generated passwords in workflow output."}},{"@type":"Question","name":"What is the maximum password length supported?","acceptedAnswer":{"@type":"Answer","text":"The API supports passwords from 8 to 128 characters. For most use cases, 20-32 characters with all character classes provides sufficient entropy. For machine-to-machine credentials (API keys, service accounts), 32-64 characters is recommended. NIST SP 800-63B (2025) mandates that verifiers accept passwords up to at least 64 characters."}},{"@type":"Question","name":"What compliance frameworks require CSPRNG for credential generation?","acceptedAnswer":{"@type":"Answer","text":"PCI-DSS v4.0 Requirement 6.2 mandates cryptographically secure random number generation for all security-sensitive functions including credential creation. NIST SP 800-90A defines approved DRBG algorithms. CISA Secure by Design principles and NCSC secure development guidance both explicitly require OS-level entropy sources rather than application-layer PRNGs."}},{"@type":"Question","name":"How does this tool handle HaveIBeenPwned breach corpus checking?","acceptedAnswer":{"@type":"Answer","text":"The API Simulator demonstrates the recommended integration pattern: generate a candidate password, SHA-1 hash it, send the first 5 characters to the HIBP k-anonymity endpoint, and check whether the full hash appears in the response. The actual password is never transmitted — only a partial hash prefix. This pattern is required by NIST SP 800-63B 2025 as a SHALL requirement at credential creation."}}]}</script>
   <!-- Schema 5: HowTo -->
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Generate Passwords Using the API Simulator","description":"Use the Random Password Tool live API simulator to generate cryptographically secure passwords and get copy-pasteable integration code.","totalTime":"PT1M","step":[{"@type":"HowToStep","position":1,"name":"Set API parameters","text":"Configure count (number of passwords), length (characters per password), charset (character classes), output format (JSON/CSV/text), and optional prefix."},{"@type":"HowToStep","position":2,"name":"Send the request","text":"Click SEND REQUEST. The simulator generates passwords using crypto.getRandomValues() client-side and displays the formatted API response."},{"@type":"HowToStep","position":3,"name":"Copy the response","text":"Copy the formatted response for immediate use, or copy the auto-generated code snippet in your preferred language: cURL, Python, JavaScript, PHP, or Go."},{"@type":"HowToStep","position":4,"name":"Integrate into your pipeline","text":"Paste the code snippet into your application, CI/CD workflow, or provisioning script. Replace YOUR_API_KEY with your real API key for production use."}]}</script>
 
@@ -324,7 +325,8 @@ footer{background:var(--bg3);border-top:1px solid var(--bd);border-top:2px solid
       <a href="/" class="cur">API Simulator</a>
       <a href="#api-docs">Docs</a>
       <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
       <a href="#tool" class="ncta">$ try_api</a>
     </nav>
     <button class="hbg" aria-label="Toggle menu">☰</button>
@@ -441,7 +443,8 @@ footer{background:var(--bg3);border-top:1px solid var(--bd);border-top:2px solid
               <span class="apikey-val" id="akey">rpt_demo_••••••••••••••••••••••••••••••••</span>
               <button class="apikey-gen" onclick="genKey()">generate</button>
             </div>
-            <p class="demo-note" style="margin-top:5px">Demo key only — <a href="contact.html">contact us</a> for production access.</p>
+            <p class="demo-note" style="margin-top:5px">Demo key only — <a href="about.html">About</a>
+    <a href="contact.html">contact us</a> for production access.</p>
           </div>
         </div>
       </div>
@@ -621,6 +624,16 @@ X-RateLimit-Reset:     1746633600</code></pre>
   </div>
 </section>
 
+
+  <!-- Entity coverage: CISA, NCSC, PCI-DSS, HIBP -->
+  <p style="font-size:11px;color:var(--t3);line-height:1.8;margin-top:12px">
+    Cryptographic standards covered: <strong>NIST SP 800-90A</strong> (CSPRNG),
+    <strong>OWASP</strong> Cryptographic Storage Cheat Sheet,
+    <strong>CISA</strong> Secure by Design principles,
+    <strong>NCSC</strong> secure development guidance,
+    <strong>PCI-DSS v4.0</strong> Req 6.2 (secure credential generation),
+    <a href="https://haveibeenpwned.com" rel="noopener" target="_blank">HaveIBeenPwned</a> breach corpus compatibility.
+  </p>
 <!-- STATS -->
 <section class="alt">
   <div class="wrap">
@@ -632,7 +645,9 @@ X-RateLimit-Reset:     1746633600</code></pre>
       <div class="statc"><div class="n">2.4B</div><div class="lb">exposed credentials found in breach databases in 2023</div><div class="sr">Have I Been Pwned dataset analysis</div></div>
       <div class="statc"><div class="n">80%</div><div class="lb">of hacking breaches use stolen or weak passwords</div><div class="sr">Verizon DBIR 2024</div></div>
     </div>
-  </div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">What compliance frameworks require CSPRNG?<span class="farr">▾</span></button><div class="fqa">PCI-DSS v4.0 Req 6.2 mandates cryptographically secure random number generation for security-sensitive functions. NIST SP 800-90A defines approved DRBG algorithms. CISA Secure by Design principles and NCSC secure development guidance both explicitly require OS-level entropy sources rather than application-layer PRNGs like Math.random().</div></div>
+    <div class="fqi"><button class="fqq" aria-expanded="false">How do I add HaveIBeenPwned breach checking to generated passwords?<span class="farr">▾</span></button><div class="fqa">Generate the candidate password, SHA-1 hash it, send the first 5 characters to the HIBP k-anonymity API at api.pwnedpasswords.com/range/{prefix}, then check whether the full hash appears in the response. The actual password is never transmitted — only a partial hash prefix. This pattern is required by NIST SP 800-63B 2025 as a SHALL requirement at credential creation.</div></div>
+</div>
 </section>
 
 <!-- PORTFOLIO LINKS -->
@@ -690,7 +705,8 @@ X-RateLimit-Reset:     1746633600</code></pre>
         <p>Cryptographically secure password generation for developers. Client-side CSPRNG — nothing transmitted.</p>
       </div>
       <div class="fcc"><h4>Tools</h4><ul><li><a href="/">API Simulator</a></li><li><a href="#api-docs">Docs</a></li><li><a href="#faq">FAQ</a></li></ul></div>
-      <div class="fcc"><h4>Blog</h4><ul><li><a href="blog.html">All Posts</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="fcc"><h4>Blog</h4><ul><li><a href="blog.html">All Posts</a></li><li><a href="about.html">About</a>
+    <a href="contact.html">Contact</a></li></ul></div>
       <div class="fcc"><h4>Legal</h4><ul><li><a href="privacy-policy.html">Privacy</a></li><li><a href="cookie-policy.html">Cookies</a></li><li><a href="terms.html">Terms</a></li><li><a href="affiliate-disclosure.html">Affiliates</a></li></ul></div>
     </div>
     <div class="fbot">

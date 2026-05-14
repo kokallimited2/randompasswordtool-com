@@ -1,59 +1,88 @@
 name: Validate Site
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check required core files
+
+      - name: Check core files present
         run: |
-          for f in index.html blog.html contact.html privacy-policy.html affiliate-disclosure.html terms.html cookie-policy.html 404.html robots.txt llms.txt sitemap.xml post.json README.md; do
+          for f in index.html blog.html about.html contact.html privacy-policy.html \
+                   affiliate-disclosure.html terms.html cookie-policy.html 404.html \
+                   robots.txt llms.txt sitemap.xml post.json README.md \
+                   .github/workflows/update-sitemap.yml; do
             [ ! -f "$f" ] && echo "MISSING: $f" && exit 1 || echo "OK: $f"
           done
-      - name: Check blog post files
+
+      - name: Check all 6 blog posts exist
         run: |
-          REQUIRED="why-math-random-password-generation cryptographically-secure-password-api secrets-management-cicd password-generation-iam-provisioning rate-limiting-credential-endpoints dev-to-prod-secure-password-generation"
-          for slug in $REQUIRED; do
+          for slug in "cryptographically-secure-password-api" "dev-to-prod-secure-password-generation" "password-generation-iam-provisioning" "rate-limiting-credential-endpoints" "secrets-management-cicd" "why-math-random-password-generation"; do
             [ ! -f "blog/${slug}.html" ] && echo "MISSING: blog/${slug}.html" && exit 1 || echo "OK: blog/${slug}.html"
           done
-      - name: Validate blog posts have canonical URLs
+
+      - name: Validate blog post SEO requirements
         run: |
           for f in blog/*.html; do
-            if ! grep -q 'rel="canonical"' "$f"; then
-              echo "MISSING canonical: $f"
-              exit 1
-            fi
-            echo "CANONICAL OK: $f"
+            grep -q 'rel="canonical"'  "$f" || { echo "MISSING canonical: $f"; exit 1; }
+            grep -q 'TechArticle'       "$f" || { echo "MISSING TechArticle: $f"; exit 1; }
+            grep -q 'BreadcrumbList'    "$f" || { echo "MISSING BreadcrumbList: $f"; exit 1; }
+            grep -q 'FAQPage'           "$f" || { echo "MISSING FAQPage schema: $f"; exit 1; }
+            grep -q 'og:image'          "$f" || { echo "MISSING og:image: $f"; exit 1; }
+            echo "OK: $f"
           done
-      - name: Validate post.json
+
+      - name: Validate post.json structure
         run: |
           python3 -c "
-          import json
-          with open('post.json') as f: d=json.load(f)
-          posts=d.get('posts',[])
-          assert len(posts)==6, f'Expected 6, got {len(posts)}'
-          featured=[p for p in posts if p.get('featured')]
-          assert len(featured)==1, f'Expected 1 featured, got {len(featured)}'
-          for p in posts:
-            assert 'url' in p, f'Missing url in post {p[\"id\"]}'
-            assert p['url'].startswith('/blog/'), f'Post URL must start with /blog/: {p[\"url\"]}'
-          print(f'post.json valid: {len(posts)} posts, 1 featured, all have /blog/ URLs')
-          "
-      - name: Check blog index links to post files (not modals)
+import json
+with open('post.json') as f: d=json.load(f)
+posts=d.get('posts',[])
+assert len(posts)==6, f'Expected 6, got {len(posts)}'
+featured=[p for p in posts if p.get('featured')]
+assert len(featured)==1, f'Expected 1 featured, got {len(featured)}'
+for p in posts:
+    assert 'url' in p and p['url'].startswith('/blog/'), f'Bad url: {p.get("slug")}'
+    assert 'content' not in p, f'Content field in post.json: {p.get("slug")}'
+print(f'post.json valid: {len(posts)} posts, 1 featured')
+"
+
+      - name: blog.html must NOT use openP() modal
         run: |
-          if grep -q "openP(" blog.html; then
-            echo "ERROR: blog.html still uses modal openP() — should link to /blog/*.html"
-            exit 1
-          fi
-          echo "OK: blog.html uses direct links"
-      - name: Check sitemap includes blog posts
+          grep -q 'openP(' blog.html && echo 'ERROR: modal found' && exit 1
+          echo 'OK: no modal'
+
+      - name: sitemap.xml must include 6 blog URLs and about.html
         run: |
-          count=$(grep -c "/blog/" sitemap.xml || echo 0)
-          [ "$count" -lt 6 ] && echo "ERROR: sitemap.xml has only $count /blog/ URLs, expected 6+" && exit 1
-          echo "OK: sitemap.xml has $count blog post URLs"
+          count=$(grep -c '/blog/' sitemap.xml || echo 0)
+          [ "$count" -lt 6 ] && echo "ERROR: only $count /blog/ URLs" && exit 1
+          grep -q '/about.html' sitemap.xml || { echo "ERROR: about.html missing from sitemap"; exit 1; }
+          echo "OK: $count blog URLs + about.html in sitemap"
+
+      - name: about.html must have Person and Organization schema
+        run: |
+          grep -q 'Person'       about.html || { echo "MISSING Person schema"; exit 1; }
+          grep -q 'Organization' about.html || { echo "MISSING Organization schema"; exit 1; }
+          echo "OK: schemas present"
+
+      - name: crypto.getRandomValues must be used (not Math.random for generation)
+        run: |
+          grep -q 'crypto.getRandomValues' index.html || { echo "ERROR: crypto.getRandomValues not found"; exit 1; }
+          # Math.random is acceptable in educational content and UI timing only.
+          # Fail only if Math.random is used inside a character-selection loop.
+          python3 -c "
+import re
+with open('index.html') as f: src=f.read()
+# Find script sections
+scripts=re.findall(r'<script[^>]*>(.*?)</script>', src, re.S)
+for s in scripts:
+    # Check for Math.random in character selection context
+    if re.search(r'Math\.random\(\)\s*\*\s*\w*[Cc]har', s):
+        print('ERROR: Math.random() used for character selection')
+        exit(1)
+print('OK: Math.random not used for character selection')
+"

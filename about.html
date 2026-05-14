@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About Random Password Tool | randompasswordtool.com</title>
+<meta name="description" content="About Random Password Tool — written by Alex Rivera, Security Engineer. CSPRNG-based password generation, API simulation, and developer security guides aligned with NIST SP 800-90A, OWASP, and CISA.">
+<link rel="canonical" href="https://randompasswordtool.com/about.html">
+<meta property="og:title" content="About Random Password Tool">
+<meta property="og:description" content="Developer-focused CSPRNG password generation and security guidance. Written by Alex Rivera, Security Engineer.">
+<meta property="og:image" content="https://randompasswordtool.com/assets/img/og-about.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://randompasswordtool.com/about.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='6' fill='%230d1117'/><text x='4' y='28' font-size='22' fill='%2322d3ee'>&#x26A1;</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Alex Rivera","jobTitle":"Security Engineer, RandomPasswordTool.com","worksFor":{"@type":"Organization","name":"Random Password Tool","url":"https://randompasswordtool.com/"},"description":"Security engineer with expertise in cryptographically secure random number generation, API security, DevSecOps, and credential lifecycle management. Contributor to OWASP Cryptographic Storage guidance."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Random Password Tool","url":"https://randompasswordtool.com/","description":"Developer-focused cryptographically secure password generation tool with live API simulator, multi-language code generation, and DevSecOps security guides. Operated by Kokal Operations Ltd.","foundingDate":"2026","contactPoint":{"@type":"ContactPoint","email":"hello@randompasswordtool.com","contactType":"customer support"}}</script>
+<style>
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#0a0d12;
+  --card:#1c2128;--card2:#21262d;--card3:#2d333b;
+  --p:#22d3ee;--pd:#0891b2;--pl:#083344;--pll:rgba(34,211,238,.08);
+  --acc:#f97316;--ok:#4ade80;
+  --t:#e6edf3;--t2:#8d96a0;--t3:#6e7681;--t4:#484f58;
+  --bd:#30363d;--bd2:#3d444d;
+  --rad:8px;--rads:4px;
+  --sh:0 1px 4px rgba(0,0,0,.4);--shp:0 4px 20px rgba(34,211,238,.15)
+}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:14px}
+a{color:var(--p);text-decoration:none}a:hover{color:var(--pd)}
+strong{color:var(--t);font-weight:600}
+code{font-family:'JetBrains Mono',monospace;font-size:.82em;background:var(--card2);color:var(--p);padding:2px 7px;border-radius:var(--rads);border:1px solid var(--bd)}
+#ck{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);z-index:9999;display:none;padding:12px 20px}
+.cki{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#ck p{font-size:12px;color:var(--t3);flex:1}#ck a{color:var(--p)}
+.ckb{display:flex;gap:6px}.ckac{background:var(--p);color:var(--bg3);border:none;padding:6px 13px;border-radius:var(--rad);cursor:pointer;font-size:12px;font-weight:600;font-family:inherit}
+.ckdc{background:var(--card2);color:var(--t3);border:1px solid var(--bd);padding:6px 10px;border-radius:var(--rad);cursor:pointer;font-size:12px;font-family:inherit}
+header{background:var(--bg3);border-bottom:1px solid var(--p);position:sticky;top:0;z-index:100;box-shadow:0 0 20px rgba(34,211,238,.1)}
+.hi{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'JetBrains Mono',monospace}
+.logo-ico{font-size:20px}.logo-txt{font-size:13px;font-weight:700;color:var(--t)}
+.logo-txt strong{color:var(--p)}.logo-txt small{display:block;font-size:9px;color:var(--t4);letter-spacing:1.5px;text-transform:uppercase}
+nav{display:flex;gap:1px}
+nav a{color:var(--t3);text-decoration:none;padding:6px 11px;border-radius:var(--rad);font-size:12px;font-weight:500;transition:all .15s;font-family:'JetBrains Mono',monospace}
+nav a:hover{background:var(--card2);color:var(--t)}nav a.cur{color:var(--p)}
+.ncta{background:var(--p)!important;color:var(--bg3)!important;font-weight:700!important}
+.hbg{display:none;background:none;border:none;cursor:pointer;color:var(--t);font-size:22px}
+.phero{background:var(--bg3);border-bottom:1px solid var(--bd);padding:32px 20px;background-image:radial-gradient(ellipse at 80% 50%,rgba(34,211,238,.06) 0%,transparent 60%)}
+.phero h1{font-size:clamp(1.3rem,4vw,1.8rem);font-weight:700;color:var(--t);margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.phero h1 span{color:var(--p)}.phero p{color:var(--t3);font-size:.88rem;max-width:480px}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:28px;max-width:1100px;margin:0 auto;padding:32px 20px 56px}
+.author-card{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--p);border-radius:var(--rad);padding:20px;margin-bottom:11px;box-shadow:var(--sh)}
+.avatar{width:76px;height:76px;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 14px;border:2px solid var(--p);box-shadow:0 0 16px rgba(34,211,238,.2)}
+.author-name{font-size:.9rem;font-weight:700;color:var(--t);text-align:center;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.author-role{font-size:11px;color:var(--t3);text-align:center;margin-bottom:14px;line-height:1.4}
+.cred-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.cred-item{display:flex;gap:8px;font-size:12px;color:var(--t2)}
+.cred-ico{color:var(--p);flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.contact-card{background:var(--card);border:1px solid var(--bd);border-radius:var(--rad);padding:14px}
+.contact-card h4{font-size:9px;font-weight:700;color:var(--p);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.contact-card a{display:block;font-size:12px;color:var(--t3);padding:6px 0;border-bottom:1px solid var(--bd);text-decoration:none;transition:color .15s}
+.contact-card a:last-child{border:none}.contact-card a:hover{color:var(--p)}
+main h2{font-size:.9rem;font-weight:700;color:var(--t);margin:0 0 11px;padding-bottom:6px;border-bottom:1px solid var(--bd);font-family:'JetBrains Mono',monospace}
+main h2 span{color:var(--p)}
+main h3{font-size:.85rem;font-weight:700;color:var(--p);margin:16px 0 6px;font-family:'JetBrains Mono',monospace}
+main p{font-size:13px;color:var(--t2);line-height:1.9;margin-bottom:12px}
+main ul{padding-left:18px;margin-bottom:12px;color:var(--t2);font-size:13px;line-height:1.9}
+.callout{border-left:3px solid var(--p);background:var(--pl);padding:12px 16px;margin:14px 0;font-size:13px;color:var(--t2);line-height:1.8;border-radius:0 var(--rads) var(--rads) 0}
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.tc{background:var(--card2);border:1px solid var(--bd);border-radius:var(--rads);padding:12px}
+.tc .ti{font-size:16px;margin-bottom:5px;display:block;color:var(--p)}
+.tc strong{font-size:12px;color:var(--t);display:block;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+.tc p{font-size:11px;color:var(--t3);line-height:1.55;margin:0}
+.sec{margin-bottom:26px}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:var(--rads);margin:2px;font-family:'JetBrains Mono',monospace;font-weight:600}
+.tag.ok{background:rgba(74,222,128,.1);color:var(--ok);border:1px solid rgba(74,222,128,.3)}
+.tag.cy{background:rgba(34,211,238,.1);color:var(--p);border:1px solid rgba(34,211,238,.3)}
+footer{background:var(--bg3);border-top:1px solid var(--p);padding:32px 0 16px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:22px;max-width:1100px;margin:0 auto 20px;padding:0 20px}
+.fbrand p{color:var(--t4);font-size:11px;margin-top:7px;line-height:1.7}
+.fcc h4{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--t4);margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+.fcc ul{list-style:none}.fcc li{margin-bottom:6px}.fcc a{color:var(--t4);text-decoration:none;font-size:11px}.fcc a:hover{color:var(--p)}
+.fbot{border-top:1px solid var(--bd);padding:12px 20px 0;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.fbot p,.fbot a{font-size:10px;color:var(--t4);text-decoration:none}.fbot a:hover{color:var(--p)}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr}.trust-grid{grid-template-columns:1fr}}
+@media(max-width:768px){nav{display:none;position:absolute;top:56px;left:0;right:0;background:var(--bg3);padding:10px;flex-direction:column;border-bottom:1px solid var(--p)}nav.op{display:flex}.hbg{display:block}}
+@media(max-width:480px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="ck"><div class="cki"><p>Essential cookies only — <a href="/cookie-policy.html">Cookie Policy</a>.</p><div class="ckb"><button class="ckdc" onclick="ckC('decline')">Decline</button><button class="ckac" onclick="ckC('accept')">Accept</button></div></div></div>
+<header><div class="hi">
+  <a href="/" class="logo"><span class="logo-ico">⚡</span><div class="logo-txt"><strong>Random Password Tool</strong><small>CSPRNG · API · DevSec</small></div></a>
+  <nav id="mn">
+    <a href="/">Simulator</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/about.html" class="cur">About</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/#tool" class="ncta">Open Simulator ↗</a>
+  </nav>
+  <button class="hbg">☰</button>
+</div></header>
+
+<div class="phero">
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px">
+    <h1><span>//</span> About Random Password Tool</h1>
+    <p>Developer-focused CSPRNG generation and API security guidance. Written by practitioners, for practitioners.</p>
+  </div>
+</div>
+
+<div class="layout">
+  <aside>
+    <div class="author-card">
+      <div class="avatar">⚡</div>
+      <div class="author-name">Alex Rivera</div>
+      <div class="author-role">Security Engineer, RandomPasswordTool.com</div>
+      <ul class="cred-list">
+        <li class="cred-item"><span class="cred-ico">&gt;</span>CSPRNG and Web Crypto API</li>
+        <li class="cred-item"><span class="cred-ico">&gt;</span>API security and rate limiting</li>
+        <li class="cred-item"><span class="cred-ico">&gt;</span>NIST SP 800-90A / 800-63B</li>
+        <li class="cred-item"><span class="cred-ico">&gt;</span>DevSecOps and secrets management</li>
+        <li class="cred-item"><span class="cred-ico">&gt;</span>IAM and credential lifecycle</li>
+        <li class="cred-item"><span class="cred-ico">&gt;</span>OWASP Cryptographic Storage</li>
+      </ul>
+      <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:4px">
+        <span class="tag cy">Node.js</span><span class="tag cy">Python</span>
+        <span class="tag cy">Go</span><span class="tag cy">Bash</span>
+        <span class="tag ok">NIST</span><span class="tag ok">OWASP</span>
+      </div>
+    </div>
+    <div class="contact-card">
+      <h4>// Contact</h4>
+      <a href="mailto:hello@randompasswordtool.com">hello@randompasswordtool.com</a>
+      <a href="/contact.html">Send a message →</a>
+      <a href="/privacy-policy.html">Privacy Policy</a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="sec">
+      <h2>// <span>Mission</span></h2>
+      <div class="callout"><code>// tl;dr</code> — Correct CSPRNG implementation, verifiable in DevTools, with the code examples and API design patterns engineers actually need.</div>
+      <p>Random Password Tool exists to give developers a correct, auditable reference implementation of cryptographically secure password generation — paired with the practical code patterns for integrating that generation into APIs, CI/CD pipelines, and IAM provisioning workflows.</p>
+      <p>Most password generator tools are marketing pages that ship <code>Math.random()</code> behind a polished UI. This tool ships <code>crypto.getRandomValues()</code> with the Network tab open as the proof. Every claim on this site comes with a primary source: NIST SP 800-90A, OWASP Cryptographic Storage Cheat Sheet, CISA Secure by Design, or RFC.</p>
+    </div>
+
+    <div class="sec">
+      <h2>// <span>About the Author</span></h2>
+      <p>Alex Rivera is a security engineer with deep experience in cryptographically secure random number generation, API security architecture, DevSecOps pipeline design, and credential lifecycle management across enterprise environments.</p>
+      <p>Alex has contributed to internal OWASP working group discussions on the Cryptographic Storage Cheat Sheet and has implemented NIST SP 800-63B compliant credential management systems across financial services and healthcare environments subject to PCI-DSS v4.0, HIPAA, and ISO 27001 audit requirements.</p>
+      <h3>// Technical focus areas</h3>
+      <ul>
+        <li><strong>CSPRNG implementation</strong> — crypto.getRandomValues(), Node.js crypto.randomBytes(), OS entropy sources (/dev/urandom, CryptGenRandom)</li>
+        <li><strong>API security design</strong> — rate limiting strategies, CORS, response headers, charset validation, cache control</li>
+        <li><strong>Secrets management</strong> — HashiCorp Vault, AWS Secrets Manager, SOPS, GitHub Actions secret injection</li>
+        <li><strong>IAM provisioning</strong> — SCIM 2.0, Active Directory bulk provisioning, Entra ID, mandatory rotation workflows</li>
+        <li><strong>DevSecOps</strong> — pipeline secret scanning (Trufflehog, GitLeaks), environment promotion patterns, dev/staging/prod credential isolation</li>
+        <li><strong>Compliance</strong> — PCI-DSS v4.0 Req 6.2, NIST SP 800-90A/800-63B, OWASP Top 10, CISA Secure by Design</li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <h2>// <span>Why Trust This Tool?</span></h2>
+      <div class="trust-grid">
+        <div class="tc"><span class="ti">🔒</span><strong>Verifiable client-side</strong><p>All generation uses crypto.getRandomValues(). Open DevTools → Network — zero requests made during generation.</p></div>
+        <div class="tc"><span class="ti">📋</span><strong>Primary sources only</strong><p>Every claim cites NIST, OWASP, CISA, or RFC. No paraphrased marketing guidance.</p></div>
+        <div class="tc"><span class="ti">⚡</span><strong>No Math.random()</strong><p>The tool itself never calls Math.random() for generation. Educational content explains why you shouldn't either.</p></div>
+        <div class="tc"><span class="ti">🚫</span><strong>No advertising</strong><p>Affiliate links are disclosed individually per ASA/FTC rules and do not influence technical recommendations.</p></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>// <span>Editorial Standards</span></h2>
+      <p>All technical claims are sourced from: <a href="https://csrc.nist.gov/publications/detail/sp/800-90a/rev-1/final" rel="noopener" target="_blank">NIST SP 800-90A</a>, <a href="https://pages.nist.gov/800-63-4/" rel="noopener" target="_blank">NIST SP 800-63B 2025</a>, <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html" rel="noopener" target="_blank">OWASP Cryptographic Storage Cheat Sheet</a>, <a href="https://www.cisa.gov/resources-tools/resources/secure-by-design" rel="noopener" target="_blank">CISA Secure by Design</a>, and relevant RFCs. No claim is published without a primary source published within the last three years.</p>
+      <p>Code examples are tested against Node.js LTS, Python 3.12+, and current browser environments before publication. Security-critical code examples are reviewed against OWASP guidance before being included in the Code Generator.</p>
+    </div>
+
+    <div class="sec">
+      <h2>// <span>Organisation Details</span></h2>
+      <p>
+        <strong>Operated by:</strong> Kokal Operations Ltd, registered in England and Wales<br>
+        <strong>Website:</strong> <a href="https://randompasswordtool.com/">randompasswordtool.com</a><br>
+        <strong>Founded:</strong> 2026<br>
+        <strong>Contact:</strong> <a href="mailto:hello@randompasswordtool.com">hello@randompasswordtool.com</a><br>
+        <strong>Privacy:</strong> <a href="/privacy-policy.html">Privacy Policy</a> (UK GDPR compliant)
+      </p>
+    </div>
+  </main>
+</div>
+
+<footer><div class="fg">
+  <div class="fbrand"><a href="/" class="logo" style="text-decoration:none;font-family:'JetBrains Mono',monospace"><span style="font-size:18px">⚡</span><div class="logo-txt" style="font-size:13px"><strong style="color:var(--p)">Random Password Tool</strong></div></a>
+  <p>CSPRNG password generation. Client-side only. Nothing transmitted.</p></div>
+  <div class="fcc"><h4>// Tool</h4><ul><li><a href="/">Simulator</a></li><li><a href="/#faq">FAQ</a></li></ul></div>
+  <div class="fcc"><h4>// Blog</h4><ul><li><a href="/blog.html">All Articles</a></li><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
+  <div class="fcc"><h4>// Legal</h4><ul><li><a href="/privacy-policy.html">Privacy</a></li><li><a href="/cookie-policy.html">Cookies</a></li><li><a href="/terms.html">Terms</a></li><li><a href="/affiliate-disclosure.html">Affiliates</a></li></ul></div>
+</div><div class="fbot">
+  <p>© 2026 randompasswordtool.com · Kokal Operations Ltd, United Kingdom</p>
+  <p><a href="/privacy-policy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+</div></footer>
+<script>
+(function(){if(!localStorage.getItem('rpt-ck'))document.getElementById('ck').style.display='block';})();
+function ckC(v){localStorage.setItem('rpt-ck',v);document.getElementById('ck').style.display='none';}
+document.querySelector('.hbg').addEventListener('click',function(){document.getElementById('mn').classList.toggle('op');});
+</script>
+</body>
+</html>
