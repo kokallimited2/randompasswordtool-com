@@ -1,194 +1,928 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cryptographically secure random password generator. Create unpredictable passwords with true randomness.">
-    <meta name="keywords" content="random password generator, true random, cryptographic secure, password entropy tool">
-    <meta name="author" content="RandomPassTool">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="RandomPasswordTool - True Random Password Generator">
-    <meta property="og:description" content="Cryptographically secure random password generator. Create unpredictable passwords with true randomness.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://randompasswordtool.com">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RandomPasswordTool - True Random Password Generator">
-    <meta name="twitter:description" content="Cryptographically secure random password generator. Create unpredictable passwords with true randomness.">
-    <link rel="canonical" href="https://randompasswordtool.com/">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family='Quicksand':wght@300;400;500;600;700&family='JetBrains+Mono':wght@400;500;600&display=swap" rel="stylesheet">
-    <title>RandomPasswordTool - True Random Password Generator</title>
-    <link rel="stylesheet" href="styles.css">
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "RandomPasswordTool", "description": "Cryptographically secure random password generator. Create unpredictable passwords with true randomness.", "url": "https://randompasswordtool.com", "applicationCategory": "Utility", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "creator": {"@type": "Organization", "name": "RandomPassTool"}}</script>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230D9488' width='100' height='100'/%3E%3Ctext x='50' y='70' font-size='60' font-weight='bold' text-anchor='middle' fill='white' font-family='Arial'%3ERT%3C/text%3E%3C/svg%3E">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Password Tool — API-Powered Cryptographically Secure Generator | randompasswordtool.com</title>
+  <meta name="description" content="Cryptographically secure password generation via API. Supports JSON, CSV, and plain text. Live API simulator with cURL, Python, JavaScript, PHP, and Go code examples.">
+  <link rel="canonical" href="https://randompasswordtool.com/">
+  <meta property="og:title" content="Random Password Tool — Programmable CSPRNG Password API">
+  <meta property="og:description" content="Cryptographically secure password generation. CLI-ready. Pipeline-safe. Live API simulator with code in 5 languages.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://randompasswordtool.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><rect width='40' height='40' rx='3' fill='%230d1117'/><text x='7' y='28' font-family='monospace' font-size='22' fill='%2322d3ee'>&#x3e;_</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Schema 1: SoftwareApplication -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Random Password Tool API Simulator","url":"https://randompasswordtool.com/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},"description":"Cryptographically secure password generation tool with live API simulator. Supports JSON, CSV, and plain text output. Code examples in cURL, Python, JavaScript, PHP, and Go. Uses crypto.getRandomValues() per NIST SP 800-90A.","featureList":"Live API simulator, Multi-language code generation, JSON/CSV/text output, Prefix support, CSPRNG generation, Bulk generation up to 100 passwords"}</script>
+  <!-- Schema 2: Organization -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Random Password Tool","url":"https://randompasswordtool.com/","description":"Developer-focused cryptographically secure password generation tools and API simulator.","contactPoint":{"@type":"ContactPoint","contactType":"technical support","email":"hello@randompasswordtool.com"}}</script>
+  <!-- Schema 3: WebSite -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","url":"https://randompasswordtool.com/","name":"Random Password Tool","potentialAction":{"@type":"SearchAction","target":"https://randompasswordtool.com/blog.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+  <!-- Schema 4: FAQPage -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is Math.random() unsafe for password generation?","acceptedAnswer":{"@type":"Answer","text":"JavaScript's Math.random() uses the Mersenne Twister PRNG algorithm, which is not cryptographically secure. Its internal state (19,937 bits) can be fully recovered after observing 624 consecutive outputs, making it predictable. For password generation, always use crypto.getRandomValues() which calls the operating system's CSPRNG (e.g. /dev/urandom on Linux, CryptGenRandom on Windows)."}},{"@type":"Question","name":"What CSPRNG standard does this tool use?","acceptedAnswer":{"@type":"Answer","text":"This tool uses the Web Crypto API's crypto.getRandomValues(), which is backed by the operating system's cryptographically secure pseudorandom number generator (CSPRNG). This is consistent with NIST SP 800-90A (Recommendation for Random Number Generation Using Deterministic Random Bit Generators) and RFC 4086 (Randomness Requirements for Security)."}},{"@type":"Question","name":"Can I use the generated passwords in production pipelines?","acceptedAnswer":{"@type":"Answer","text":"Yes. All generation uses crypto.getRandomValues() client-side — passwords are never transmitted to any server. For CI/CD pipelines, copy the generated output in your preferred format (JSON, CSV, or plain text) and inject into your secrets manager (HashiCorp Vault, AWS Secrets Manager, GitHub Actions secrets)."}},{"@type":"Question","name":"What does the format parameter control?","acceptedAnswer":{"@type":"Answer","text":"The format parameter controls the response structure. json returns a structured object with metadata including count, length, charset, and a passwords array. csv returns comma-separated values suitable for spreadsheet import or pipeline processing. text returns one password per line, suitable for direct shell consumption."}},{"@type":"Question","name":"How does the charset parameter work?","acceptedAnswer":{"@type":"Answer","text":"The charset parameter accepts a string of flags: u for uppercase (A-Z), l for lowercase (a-z), n for numbers (0-9), s for symbols (!@#$), and a for exclude_ambiguous. Example: charset=uln generates passwords using uppercase, lowercase, and numbers only — no symbols, no ambiguous characters."}},{"@type":"Question","name":"Is there a rate limit on the API?","acceptedAnswer":{"@type":"Answer","text":"The free tier allows 1,000 requests per day. The API simulator on this page runs entirely client-side — no requests are made to any server, so simulator use does not count against rate limits. API key authentication is required for production use."}},{"@type":"Question","name":"How do I integrate this into a GitHub Actions workflow?","acceptedAnswer":{"@type":"Answer","text":"Use the API endpoint in a workflow step with curl, then pipe the output to your secrets configuration. Store the generated password as a masked secret using GitHub's secrets API or inject directly into your deployment environment variables. Never log generated passwords in workflow output."}},{"@type":"Question","name":"What is the maximum password length supported?","acceptedAnswer":{"@type":"Answer","text":"The API supports passwords from 8 to 128 characters. For most use cases, 20-32 characters with all character classes provides sufficient entropy. For machine-to-machine credentials (API keys, service accounts), 32-64 characters is recommended. NIST SP 800-63B (2025) mandates that verifiers accept passwords up to at least 64 characters."}}]}</script>
+  <!-- Schema 5: HowTo -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to Generate Passwords Using the API Simulator","description":"Use the Random Password Tool live API simulator to generate cryptographically secure passwords and get copy-pasteable integration code.","totalTime":"PT1M","step":[{"@type":"HowToStep","position":1,"name":"Set API parameters","text":"Configure count (number of passwords), length (characters per password), charset (character classes), output format (JSON/CSV/text), and optional prefix."},{"@type":"HowToStep","position":2,"name":"Send the request","text":"Click SEND REQUEST. The simulator generates passwords using crypto.getRandomValues() client-side and displays the formatted API response."},{"@type":"HowToStep","position":3,"name":"Copy the response","text":"Copy the formatted response for immediate use, or copy the auto-generated code snippet in your preferred language: cURL, Python, JavaScript, PHP, or Go."},{"@type":"HowToStep","position":4,"name":"Integrate into your pipeline","text":"Paste the code snippet into your application, CI/CD workflow, or provisioning script. Replace YOUR_API_KEY with your real API key for production use."}]}</script>
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   RANDOM PASSWORD TOOL — GitHub Dark / Developer Docs vibe
+   JetBrains Mono (display) + Inter (body)
+   Electric cyan #22d3ee / Deep charcoal #0d1117
+   4px radius — sharpest in portfolio
+   Cyan TOP border on header (distinct from all siblings)
+   ═══════════════════════════════════════════════════════ */
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#0a0d12;
+  --card:#1c2128;--card2:#21262d;--card3:#2d333b;
+  --p:#22d3ee;--pd:#0891b2;--pl:#083344;--pll:rgba(34,211,238,.08);
+  --acc:#f97316;--accd:#c2410c;--accl:rgba(249,115,22,.1);
+  --ok:#4ade80;--okl:rgba(74,222,128,.1);
+  --t:#e6edf3;--t2:#8d96a0;--t3:#6e7681;--t4:#484f58;
+  --bd:#30363d;--bd2:#21262d;--bd3:#444c56;
+  --rad:4px;--radl:8px;--rads:2px;
+  --sh:0 1px 6px rgba(0,0,0,.6);
+  --shg:0 0 20px rgba(34,211,238,.12)
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t);line-height:1.6;font-size:14px}
+a{color:var(--p)}a:hover{color:#67e8f9;text-decoration:none}
+strong{color:var(--t)}
+.mono{font-family:'JetBrains Mono',monospace}
+code{font-family:'JetBrains Mono',monospace;font-size:.8em;background:var(--card2);color:var(--p);padding:2px 6px;border-radius:var(--rads);border:1px solid var(--bd)}
+pre{background:var(--bg3);border:1px solid var(--bd);border-left:3px solid var(--p);border-radius:0 var(--rad) var(--rad) 0;padding:16px;overflow-x:auto;font-size:12px;line-height:1.65;margin:12px 0;font-family:'JetBrains Mono',monospace;color:var(--t2)}
+pre .kw{color:var(--p)} pre .str{color:var(--ok)} pre .cm{color:var(--t4)} pre .fn{color:var(--acc)} pre .num{color:#a78bfa}
+
+/* ── COOKIE ── */
+#ck{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);z-index:9999;display:none;padding:12px 22px}
+.cki{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+#ck p{font-size:12px;color:var(--t3);flex:1}#ck a{color:var(--p)}
+.ckb{display:flex;gap:7px}
+.ckac{background:var(--p);color:var(--bg3);border:none;padding:6px 14px;border-radius:var(--rad);cursor:pointer;font-size:12px;font-weight:600;font-family:inherit}
+.ckdc{background:var(--card2);color:var(--t3);border:1px solid var(--bd);padding:6px 11px;border-radius:var(--rad);cursor:pointer;font-size:12px;font-family:inherit}
+
+/* ── HEADER — cyan TOP border (unique in portfolio) ── */
+header{background:var(--bg3);border-top:2px solid var(--p);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:100;box-shadow:0 1px 12px rgba(0,0,0,.6)}
+.hi{max-width:1180px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:54px}
+/* Terminal-style logo: >_ symbol */
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-prompt{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--p);line-height:1}
+.logo-name{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:var(--t2);letter-spacing:-.3px}
+.logo-name strong{color:var(--t)}
+nav{display:flex;align-items:center;gap:1px}
+nav a{color:var(--t3);text-decoration:none;padding:5px 10px;border-radius:var(--rad);font-size:12px;font-weight:500;transition:all .15s;font-family:'Inter',sans-serif}
+nav a:hover{background:var(--card2);color:var(--t)}
+nav a.cur{color:var(--p)}
+.ncta{background:var(--p)!important;color:var(--bg3)!important;font-weight:600!important;font-family:'JetBrains Mono',monospace!important;font-size:11px!important;letter-spacing:.3px!important}
+.ncta:hover{background:var(--pd)!important}
+.hbg{display:none;background:none;border:none;cursor:pointer;color:var(--t);font-size:20px;font-family:'JetBrains Mono',monospace}
+
+/* ── HERO — dot-grid pattern, terminal window centrepiece ── */
+.hero{
+  padding:56px 20px 48px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle,rgba(34,211,238,.06) 1px,transparent 1px),
+    var(--bg3);
+  background-size:28px 28px;
+}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--p),transparent)}
+.hi2{max-width:1180px;margin:0 auto;position:relative;z-index:1}
+.hero-layout{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+/* Backtick-style badge — distinct from other sites' badges */
+.hbadge{display:inline-flex;align-items:center;gap:0;margin-bottom:20px;background:var(--card2);border:1px solid var(--bd);border-radius:var(--rad);padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--p)}
+.hbadge::before,.hbadge::after{content:'`';color:var(--t4);font-size:13px;margin:0 3px}
+.hero h1{font-family:'JetBrains Mono',monospace;font-size:clamp(1.7rem,4vw,2.7rem);font-weight:700;color:var(--t);line-height:1.2;margin-bottom:16px;letter-spacing:-.5px}
+.hero h1 .cy{color:var(--p)}
+.hdesc{color:var(--t3);max-width:440px;margin-bottom:24px;line-height:1.75;font-size:.9rem}
+.hctas{display:flex;gap:9px;flex-wrap:wrap}
+.btn-p{display:inline-block;background:var(--p);color:var(--bg3);padding:9px 20px;border-radius:var(--rad);font-size:13px;font-weight:600;text-decoration:none;font-family:'JetBrains Mono',monospace;transition:background .15s;letter-spacing:.2px}
+.btn-p:hover{background:var(--pd);text-decoration:none;color:var(--bg3)}
+.btn-s{display:inline-block;background:var(--card2);color:var(--t2);border:1px solid var(--bd);padding:9px 20px;border-radius:var(--rad);font-size:12px;font-weight:500;text-decoration:none;transition:all .15s}
+.btn-s:hover{border-color:var(--p);color:var(--p);text-decoration:none}
+/* Mock terminal in hero */
+.term-mock{background:var(--bg3);border:1px solid var(--bd);border-top:1px solid var(--bd3);border-radius:var(--radl);overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.6),0 0 0 1px rgba(34,211,238,.08)}
+.term-hd{background:var(--card2);border-bottom:1px solid var(--bd);padding:9px 14px;display:flex;align-items:center;gap:8px}
+.tdc{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.tdc-r{background:#ef4444}.tdc-y{background:#eab308}.tdc-g{background:#22c55e}
+.term-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4);margin-left:4px}
+.term-body{padding:16px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;min-height:180px}
+.tb-dim{color:var(--t4)}.tb-key{color:var(--p)}.tb-str{color:var(--ok)}.tb-num{color:#a78bfa}.tb-ok{color:var(--ok)}
+
+/* ═══════════════════════════════════════════════════════
+   LIVE API SIMULATOR (SOP-07 unique tool)
+   ═══════════════════════════════════════════════════════ */
+.api-wrap{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--p);border-radius:var(--radl);overflow:hidden;box-shadow:var(--shg)}
+.api-hd{background:var(--bg3);border-bottom:1px solid var(--bd);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.api-hd h2{font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:600;color:var(--t);display:flex;align-items:center;gap:7px}
+.api-hd h2::before{content:'>';color:var(--p)}
+.api-badge{font-size:10px;color:var(--t4);font-family:'JetBrains Mono',monospace;background:var(--card2);border:1px solid var(--bd);padding:2px 7px;border-radius:var(--rads)}
+/* URL bar */
+.urlbar{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rads);padding:8px 12px;display:flex;align-items:center;gap:9px;margin-bottom:14px;font-family:'JetBrains Mono',monospace;font-size:11px;overflow-x:auto}
+.url-method{background:rgba(34,211,238,.12);color:var(--p);border:1px solid rgba(34,211,238,.25);padding:2px 7px;border-radius:var(--rads);font-weight:600;white-space:nowrap}
+.url-path{color:var(--t2);white-space:nowrap}
+.api-panels{display:grid;grid-template-columns:1fr 1fr}
+/* LEFT: params */
+.api-left{border-right:1px solid var(--bd);padding:16px}
+.psec{margin-bottom:14px}
+.psec-hd{font-size:9px;font-weight:600;color:var(--t4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;font-family:'Inter',sans-serif}
+.psec-hd::after{content:'';flex:1;height:1px;background:var(--bd)}
+.prow{margin-bottom:10px}
+.plabel{font-size:11px;font-weight:500;color:var(--t3);margin-bottom:4px;display:block;font-family:'JetBrains Mono',monospace}
+.pnum{width:100%;padding:6px 9px;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rads);color:var(--t);font-size:12px;font-family:'JetBrains Mono',monospace;outline:none}
+.pnum:focus{border-color:var(--p)}
+/* Charset checkboxes */
+.cset{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.csc{display:flex;align-items:center;gap:6px;padding:5px 7px;border:1px solid var(--bd);border-radius:var(--rads);background:var(--bg3);cursor:pointer;transition:all .15s}
+.csc:hover{border-color:var(--bd3)}
+.csc input{width:12px;height:12px;accent-color:var(--p);cursor:pointer;flex-shrink:0}
+.csc label{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--t3);cursor:pointer}
+.csc.on{border-color:rgba(34,211,238,.3);background:rgba(34,211,238,.05)}
+.csc.on label{color:var(--p)}
+/* Format segmented toggle */
+.fmt-seg{display:flex;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rads);overflow:hidden}
+.fmt-btn{flex:1;padding:6px 4px;text-align:center;font-size:11px;font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--t3);cursor:pointer;border:none;background:none;transition:all .15s}
+.fmt-btn.ac{background:rgba(34,211,238,.12);color:var(--p)}
+/* Prefix input */
+.pfx{width:100%;padding:6px 9px;background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rads);color:var(--t);font-size:12px;font-family:'JetBrains Mono',monospace;outline:none}
+.pfx:focus{border-color:var(--p)}
+.pfx::placeholder{color:var(--t4)}
+/* Auto URL display */
+.qs-wrap{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rads);padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin-bottom:10px;word-break:break-all;line-height:1.6}
+.qs-wrap .qs-key{color:var(--p)}.qs-wrap .qs-val{color:var(--ok)}
+.send-btn{width:100%;padding:10px;background:var(--p);color:var(--bg3);border:none;border-radius:var(--rad);font-size:.82rem;font-weight:600;cursor:pointer;font-family:'JetBrains Mono',monospace;letter-spacing:.8px;text-transform:uppercase;transition:all .2s}
+.send-btn:hover{background:var(--pd);transform:translateY(-1px)}
+.send-btn:active{transform:translateY(0)}
+/* RIGHT: terminal output */
+.api-right{padding:16px;display:flex;flex-direction:column;gap:10px}
+.api-term{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--radl);overflow:hidden;flex:1}
+.at-hd{background:var(--card2);border-bottom:1px solid var(--bd);padding:8px 13px;display:flex;align-items:center;gap:8px}
+.at-dots{display:flex;gap:5px}.at-dot{width:9px;height:9px;border-radius:50%}
+.at-dot.r{background:#ef4444}.at-dot.y{background:#eab308}.at-dot.g{background:#22c55e}
+.at-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin-left:2px;flex:1}
+.at-ok{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600}
+.at-body{padding:13px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.75;min-height:160px;overflow-y:auto;max-height:260px;color:var(--t3)}
+#resp-body{white-space:pre;word-break:break-all}
+.copy-resp{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--t4);background:var(--card2);border:1px solid var(--bd);padding:4px 9px;border-radius:var(--rads);cursor:pointer;transition:all .15s}
+.copy-resp:hover{border-color:var(--p);color:var(--p)}
+.copy-resp.ok{color:var(--ok);border-color:var(--ok)}
+/* API Key display */
+.apikey-row{background:var(--bg3);border:1px solid var(--bd);border-radius:var(--rads);padding:8px 11px;display:flex;align-items:center;gap:8px}
+.apikey-lbl{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--t4);white-space:nowrap;letter-spacing:.5px;text-transform:uppercase}
+.apikey-val{flex:1;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--p);font-weight:500;letter-spacing:.3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.apikey-gen{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--t4);background:var(--card2);border:1px solid var(--bd);padding:4px 9px;border-radius:var(--rads);cursor:pointer;white-space:nowrap;transition:all .15s}
+.apikey-gen:hover{border-color:var(--p);color:var(--p)}
+.demo-note{font-size:10px;color:var(--t4);font-family:'Inter',sans-serif}
+
+/* ── CODE TABS (update live with params) ── */
+.code-tabs{background:var(--card);border:1px solid var(--bd);border-top:none;border-radius:0 0 var(--radl) var(--radl);overflow:hidden}
+.tab-hd{background:var(--bg3);border-bottom:1px solid var(--bd);display:flex;overflow-x:auto}
+.tab-btn{padding:9px 16px;font-size:12px;font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--t3);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab-btn:hover{color:var(--t)}
+.tab-btn.ac{color:var(--p);border-bottom-color:var(--p);background:rgba(34,211,238,.05)}
+.tab-panel{display:none;position:relative}
+.tab-panel.ac{display:block}
+.tab-panel pre{border-radius:0;border-top:none;border-left:none;border-right:none;border-bottom:none;margin:0;padding:16px 20px;font-size:12px;background:var(--bg3);line-height:1.7;color:var(--t2)}
+.tab-copy{position:absolute;top:10px;right:10px;background:var(--card2);border:1px solid var(--bd);color:var(--t4);font-size:10px;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:var(--rads);cursor:pointer;transition:all .15s;z-index:2}
+.tab-copy:hover{border-color:var(--p);color:var(--p)}
+.tab-copy.ok{color:var(--ok);border-color:var(--ok)}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+section{padding:60px 0}
+section.alt{background:var(--bg2)}
+.stag{display:inline-flex;align-items:center;gap:5px;margin-bottom:14px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:var(--p);letter-spacing:.3px}
+.stag::before{content:'//';color:var(--t4)}
+.stit{font-family:'JetBrains Mono',monospace;font-size:clamp(1.3rem,3vw,1.9rem);font-weight:700;color:var(--t);line-height:1.25;margin-bottom:10px;letter-spacing:-.3px}
+.sdesc{color:var(--t3);max-width:580px;line-height:1.8;font-size:.9rem}
+
+/* ── API DOCS ── */
+.docs-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;margin-top:36px}
+table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+th{background:var(--card2);color:var(--p);padding:8px 12px;text-align:left;font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;border-bottom:2px solid var(--p);font-family:'JetBrains Mono',monospace}
+td{padding:8px 12px;border-bottom:1px solid var(--bd);color:var(--t2);line-height:1.5;vertical-align:top}
+td code{font-size:10px}
+tr:hover td{background:var(--card2)}
+.ec{font-family:'JetBrains Mono',monospace;font-weight:600;padding:2px 6px;border-radius:var(--rads);font-size:11px}
+.e200{background:rgba(74,222,128,.1);color:var(--ok)}
+.e400{background:rgba(249,115,22,.1);color:var(--acc)}
+.e401{background:rgba(249,115,22,.1);color:var(--acc)}
+.e429{background:rgba(234,179,8,.1);color:#eab308}
+.e500{background:rgba(239,68,68,.1);color:#ef4444}
+.rl-badge{background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.2);color:var(--p);padding:3px 9px;border-radius:var(--rads);font-size:11px;font-family:'JetBrains Mono',monospace;display:inline-block;margin:3px}
+
+/* ── USE CASES ── */
+.ucg{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:36px}
+.ucc{background:var(--card);border:1px solid var(--bd);border-left:3px solid var(--p);border-radius:var(--rad);padding:20px;transition:all .2s}
+.ucc:hover{border-color:var(--p);box-shadow:var(--shg);transform:translateY(-1px)}
+.ucc-ico{font-size:22px;margin-bottom:10px;display:block}
+.ucc h3{font-size:.85rem;font-weight:600;color:var(--t);margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+.ucc p{font-size:12px;color:var(--t3);line-height:1.7}
+.ucc pre{font-size:10px;margin-top:10px}
+
+/* ── SECURITY SECTION ── */
+.sec-layout{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:36px}
+.secc{background:var(--card);border:1px solid var(--bd);border-radius:var(--rad);padding:20px}
+.secc h3{font-size:.9rem;font-weight:600;color:var(--t);margin-bottom:10px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:7px}
+.secc h3 .tag{font-size:9px;padding:2px 6px;border-radius:var(--rads);font-weight:700}
+.bad{background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.2)}
+.good{background:rgba(74,222,128,.12);color:var(--ok);border:1px solid rgba(74,222,128,.2)}
+.secc p{font-size:12px;color:var(--t3);line-height:1.7;margin-bottom:9px}
+.secc ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.secc li{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--t2)}
+.secc li .ic{font-size:11px;flex-shrink:0;margin-top:2px}
+
+/* ── AFFILIATE ── */
+.afg{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin-top:16px}
+.afc{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--pd);border-radius:var(--rad);padding:20px;transition:all .2s}
+.afc:hover{border-top-color:var(--p);box-shadow:var(--shg)}
+.af-ph{background:var(--bg3);border:1px dashed var(--bd);border-radius:var(--rads);padding:8px;text-align:center;color:var(--t4);font-size:10px;margin-bottom:11px;font-family:'JetBrains Mono',monospace}
+.afc h3{font-size:.85rem;font-weight:600;color:var(--t);margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.afc p{font-size:12px;color:var(--t3);line-height:1.65;margin-bottom:12px}
+.afbtn{display:inline-block;background:transparent;color:var(--p);border:1px solid var(--p);padding:6px 14px;border-radius:var(--rad);font-size:12px;font-weight:600;text-decoration:none;transition:all .15s;font-family:'JetBrains Mono',monospace}
+.afbtn:hover{background:var(--p);color:var(--bg3);text-decoration:none}
+.afdiscl{background:var(--card2);border:1px solid var(--bd);border-left:3px solid var(--t4);padding:8px 12px;font-size:11px;color:var(--t4);margin-bottom:16px;display:flex;gap:7px;line-height:1.6;border-radius:0 var(--rads) var(--rads) 0}
+
+/* ── STATS ── */
+.statg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:36px}
+.statc{background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--p);border-radius:var(--rad);padding:22px 18px;text-align:center}
+.statc .n{font-size:2rem;font-weight:700;color:var(--p);font-family:'JetBrains Mono',monospace;line-height:1;margin-bottom:7px}
+.statc .lb{font-size:12px;color:var(--t2);line-height:1.5}
+.statc .sr{font-size:10px;color:var(--t4);margin-top:4px;font-style:italic}
+
+/* ── RELATED TOOLS ── */
+.rt{padding:36px 0;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.rtg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px}
+.rtl{display:flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid var(--bd);border-radius:var(--rad);text-decoration:none;color:var(--t3);font-size:12px;background:var(--card2);transition:all .15s}
+.rtl:hover{border-color:var(--p);color:var(--t);background:var(--card);text-decoration:none}
+.rtl .ico{font-size:16px;flex-shrink:0}
+.rtl .tn{font-weight:600;font-size:11px;color:var(--t2);font-family:'JetBrains Mono',monospace}
+.rtl .ts{font-size:10px;color:var(--t4)}
+
+/* ── FAQ ── */
+.fql{max-width:740px;margin:36px auto 0}
+.fqi{background:var(--card);border:1px solid var(--bd);border-radius:var(--rad);margin-bottom:5px;overflow:hidden}
+.fqi.op{border-color:var(--p)}
+.fqq{width:100%;text-align:left;background:none;border:none;padding:13px 16px;font-size:.85rem;font-weight:500;color:var(--t);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:'Inter',sans-serif}
+.fqq:hover{color:var(--p)}
+.farr{font-family:'JetBrains Mono',monospace;color:var(--p);transition:transform .2s;font-size:12px}
+.fqi.op .farr{transform:rotate(180deg)}
+.fqa{display:none;padding:0 16px 12px;font-size:13px;color:var(--t3);line-height:1.8;border-top:1px solid var(--bd);padding-top:10px}
+.fqi.op .fqa{display:block}
+
+/* ── BLOG PREVIEW ── */
+.blgg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;margin-top:36px}
+.blgc{background:var(--card);border:1px solid var(--bd);border-radius:var(--rad);overflow:hidden;transition:all .2s}
+.blgc:hover{border-color:var(--p);transform:translateY(-2px);box-shadow:var(--shg)}
+.blgi{height:100px;display:flex;align-items:center;justify-content:center;font-size:32px}
+.bg1{background:linear-gradient(135deg,#0a0d12,#1c2128)}
+.bg2{background:linear-gradient(135deg,#0a0d12,#13161e)}
+.bg3b{background:linear-gradient(135deg,#0a0d12,#0d1117)}
+.blgb{padding:14px}
+.blgcat{font-size:9px;font-weight:600;color:var(--p);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;font-family:'JetBrains Mono',monospace}
+.blgc h3{font-size:.82rem;font-weight:600;color:var(--t);margin-bottom:5px;line-height:1.4}
+.blgc p{font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:8px}
+.blgm{font-size:10px;color:var(--t4);display:flex;justify-content:space-between}
+.rm{color:var(--p);font-weight:600;font-size:11px;text-decoration:none;font-family:'JetBrains Mono',monospace}
+.rm:hover{color:#67e8f9}
+
+/* ── FOOTER ── */
+footer{background:var(--bg3);border-top:1px solid var(--bd);border-top:2px solid var(--p) /* same top treatment */;padding:44px 0 20px}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;margin-bottom:28px}
+.fb p{color:var(--t4);font-size:11px;margin-top:8px;line-height:1.7;font-family:'Inter',sans-serif}
+.fcc h4{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--t4);margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.fcc ul{list-style:none}.fcc li{margin-bottom:6px}
+.fcc a{color:var(--t4);text-decoration:none;font-size:12px;transition:color .15s}.fcc a:hover{color:var(--p)}
+.fbot{border-top:1px solid var(--bd);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:7px}
+.fbot p,.fbot a{font-size:11px;color:var(--t4);text-decoration:none}.fbot a:hover{color:var(--p)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.hero-layout{grid-template-columns:1fr}.api-panels{grid-template-columns:1fr}.api-left{border-right:none;border-bottom:1px solid var(--bd)}.docs-layout{grid-template-columns:1fr}.sec-layout{grid-template-columns:1fr}.fg{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){nav{display:none;position:absolute;top:54px;left:0;right:0;background:var(--bg3);padding:10px;flex-direction:column;border-bottom:1px solid var(--bd)}nav.op{display:flex}.hbg{display:block}}
+@media(max-width:480px){.fg{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="nav-brand">
-                <span class="nav-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="64" height="64">
-  <defs>
-    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0D9488;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#0D9488cc;stop-opacity:1"/>
-    </linearGradient>
-    <filter id="s">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.25"/>
-    </filter>
-  </defs>
-  <circle cx="100" cy="100" r="95" fill="url(#lg)" filter="url(#s)"/>
-  <rect x="60" y="80" width="80" height="60" rx="10" fill="white" opacity="0.95"/>
-  <path d="M 65 80 Q 65 45 100 45 Q 135 45 135 80" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
-  <circle cx="100" cy="110" r="10" fill="#0D9488" opacity="0.8"/>
-  <rect x="97" y="120" width="6" height="18" rx="3" fill="#0D9488" opacity="0.8"/>
-</svg></span>
-                <span class="nav-name">RandomPassTool</span>
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="#generator">Generator</a>
-                <a href="#blog">Learn</a>
-                <a href="#faq">FAQ</a>
-                <a href="#affiliates">Tools</a>
-            </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
-        </div>
+
+<div id="ck" role="dialog" aria-label="Cookie consent">
+  <div class="cki">
+    <p>We use essential cookies only. See <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <div class="ckb"><button class="ckdc" onclick="ckC('decline')">Decline</button><button class="ckac" onclick="ckC('accept')">Accept</button></div>
+  </div>
+</div>
+
+<header>
+  <div class="hi">
+    <a href="/" class="logo" aria-label="Random Password Tool — Home">
+      <span class="logo-prompt" aria-hidden="true">&#x3e;_</span>
+      <div><div class="logo-name"><strong>randompasswordtool</strong>.com</div></div>
+    </a>
+    <nav id="mn">
+      <a href="/" class="cur">API Simulator</a>
+      <a href="#api-docs">Docs</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="#tool" class="ncta">$ try_api</a>
     </nav>
+    <button class="hbg" aria-label="Toggle menu">☰</button>
+  </div>
+</header>
 
-    <section class="hero hero-glass">
-        <div class="container hero-content">
-            <div class="hero-badge">🎲 RandomPassTool</div>
-            <h1>RandomPasswordTool</h1>
-            <p class="hero-subtitle">Truly Random Passwords, Every Time</p>
-            <p class="hero-description">Cryptographically secure random password generator. Create unpredictable passwords with true randomness.</p>
+<!-- HERO -->
+<section class="hero" role="banner">
+  <div class="hi2">
+    <div class="hero-layout">
+      <div>
+        <div class="hbadge">crypto.getRandomValues()</div>
+        <h1>Random passwords.<br><span class="cy">Programmable.</span></h1>
+        <p class="hdesc">Cryptographically secure generation via API. CLI-ready. Pipeline-safe. Supports JSON, CSV, and plain text output with live code examples in 5 languages.</p>
+        <div class="hctas">
+          <a href="#tool" class="btn-p">$ try_api →</a>
+          <a href="#api-docs" class="btn-s">View Docs ↓</a>
         </div>
-    </section>
+      </div>
+      <!-- Mock terminal in hero -->
+      <div class="term-mock" aria-hidden="true">
+        <div class="term-hd">
+          <div class="tdc tdc-r"></div><div class="tdc tdc-y"></div><div class="tdc tdc-g"></div>
+          <span class="term-title">GET /api/v1/generate · 200 OK · 14ms</span>
+        </div>
+        <div class="term-body">
+<span class="tb-dim">{</span>
+  <span class="tb-key">"status"</span><span class="tb-dim">:</span> <span class="tb-str">"ok"</span><span class="tb-dim">,</span>
+  <span class="tb-key">"count"</span><span class="tb-dim">:</span> <span class="tb-num">5</span><span class="tb-dim">,</span>
+  <span class="tb-key">"length"</span><span class="tb-dim">:</span> <span class="tb-num">20</span><span class="tb-dim">,</span>
+  <span class="tb-key">"charset"</span><span class="tb-dim">:</span> <span class="tb-str">"ulns"</span><span class="tb-dim">,</span>
+  <span class="tb-key">"passwords"</span><span class="tb-dim">: [</span>
+    <span class="tb-str">"K#mP2@xNqR7!vL4sWt8Y"</span><span class="tb-dim">,</span>
+    <span class="tb-str">"d&amp;Fj9^uBm3#Xk7@LwQp1"</span><span class="tb-dim">,</span>
+    <span class="tb-str">"Zr!2N$qT8@mP4#Kv6bLs"</span><span class="tb-dim">,</span>
+    <span class="tb-str">"w7@Yf#3JqN!mXk9$Rt2P"</span><span class="tb-dim">,</span>
+    <span class="tb-str">"H&amp;Lp4!Rv2@Xt8#mQ6fKj"</span>
+  <span class="tb-dim">],</span>
+  <span class="tb-key">"entropy_bits"</span><span class="tb-dim">:</span> <span class="tb-num">131</span><span class="tb-dim">,</span>
+  <span class="tb-key">"csprng"</span><span class="tb-dim">:</span> <span class="tb-str">"crypto.getRandomValues"</span>
+<span class="tb-dim">}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="generator" class="tool-section">
-        <div class="container">
-            <div class="tool-grid">
-                <div class="generator-card">
-                    <h2>Password Generator</h2>
-                    <p class="card-description">Create a strong, random password instantly</p>
-                    <div class="password-display">
-                        <input type="text" id="password-display" class="password-input" readonly placeholder="Click generate...">
-                        <button id="copy-btn" class="btn btn-icon" title="Copy to clipboard">📋</button>
-                    </div>
-                    <div class="password-options">
-                        <div class="option-group"><label class="option-label">Length: <strong><span id="length-display">16</span></strong></label><input type="range" id="length-slider" min="4" max="128" value="16" class="slider"></div>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label"><input type="checkbox" id="include-uppercase" checked><span>Uppercase (A-Z)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="include-lowercase" checked><span>Lowercase (a-z)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="include-numbers" checked><span>Numbers (0-9)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="include-symbols" checked><span>Symbols (!@#$%...)</span></label>
-                            <label class="checkbox-label"><input type="checkbox" id="exclude-ambiguous"><span>Exclude Ambiguous</span></label>
-                        </div>
-                        <button id="generate-btn" class="btn btn-primary btn-large">Generate Password</button>
-                    </div>
-                </div>
-                <div class="checker-card">
-                    <h2>Strength Checker</h2>
-                    <p class="card-description">Check password strength in real time</p>
-                    <div class="check-input-group">
-                        <input type="password" id="strength-check-input" class="check-input" placeholder="Type password...">
-                        <button id="toggle-visibility" class="btn btn-icon">👁️</button>
-                    </div>
-                    <div id="strength-report" class="strength-report">
-                        <div class="report-item"><span class="report-label">Length:</span><span id="report-length" class="report-value">0 chars</span></div>
-                        <div class="report-item"><span class="report-label">Variety:</span><span id="report-variety" class="report-value">None</span></div>
-                        <div class="report-item"><span class="report-label">Patterns:</span><span id="report-patterns" class="report-value">None</span></div>
-                        <div class="report-item"><span class="report-label">Crack Time:</span><span id="report-time" class="report-value">Instantly</span></div>
-                        <div class="report-item"><span class="report-label">Strength:</span><span id="report-strength" class="report-value strength-very-weak">Very Weak</span></div>
-                    </div>
-                </div>
+<!-- API SIMULATOR (SOP-07 unique tool) -->
+<section id="tool" style="padding:48px 0">
+  <div class="wrap">
+    <div class="api-wrap">
+      <div class="api-hd">
+        <h2>Live API Simulator + Code Generator</h2>
+        <span class="api-badge">CLIENT-SIDE · CSPRNG</span>
+      </div>
+      <div style="padding:14px 16px 0;background:var(--bg3);border-bottom:1px solid var(--bd)">
+        <div class="urlbar" aria-label="API endpoint URL">
+          <span class="url-method">GET</span>
+          <span class="url-path">https://randompasswordtool.com/api/v1/generate<span id="qs-live" style="color:var(--p)">?count=5&amp;length=20&amp;charset=ulns&amp;format=json</span></span>
+        </div>
+      </div>
+      <div class="api-panels">
+        <!-- LEFT: Parameters -->
+        <div class="api-left" aria-label="API parameter configuration">
+          <div class="psec">
+            <div class="psec-hd">Parameters</div>
+            <div class="prow"><span class="plabel">count <span style="color:var(--t4);font-size:9px">(1–100)</span></span><input type="number" id="p-count" class="pnum" min="1" max="100" value="5" oninput="updAll()"></div>
+            <div class="prow"><span class="plabel">length <span style="color:var(--t4);font-size:9px">(8–128)</span></span><input type="number" id="p-len" class="pnum" min="8" max="128" value="20" oninput="updAll()"></div>
+          </div>
+          <div class="psec">
+            <div class="psec-hd">charset</div>
+            <div class="cset">
+              <label class="csc on" id="csc-u"><input type="checkbox" id="ch-u" checked onchange="cscTgl(this,'csc-u');updAll()"><label for="ch-u">uppercase A-Z</label></label>
+              <label class="csc on" id="csc-l"><input type="checkbox" id="ch-l" checked onchange="cscTgl(this,'csc-l');updAll()"><label for="ch-l">lowercase a-z</label></label>
+              <label class="csc on" id="csc-n"><input type="checkbox" id="ch-n" checked onchange="cscTgl(this,'csc-n');updAll()"><label for="ch-n">numbers 0-9</label></label>
+              <label class="csc on" id="csc-s"><input type="checkbox" id="ch-s" checked onchange="cscTgl(this,'csc-s');updAll()"><label for="ch-s">symbols !@#$</label></label>
+              <label class="csc" id="csc-a"><input type="checkbox" id="ch-a" onchange="cscTgl(this,'csc-a');updAll()"><label for="ch-a">excl. ambiguous</label></label>
             </div>
-        </div>
-    </section>
-
-    <section id="affiliates" class="affiliate-section">
-        <div class="container">
-            <div class="affiliate-banner">
-                <h2>Secure Your Other Accounts</h2>
-                <p>Use a password manager to store all generated passwords safely:</p>
-                <div class="affiliate-grid">
-                    <a href="https://affiliate.1password.com/click?link=randompasswordtool-com" class="affiliate-card"><div class="affiliate-icon">🔐</div><h3>1Password</h3><p>Best password manager</p><span class="cta-text">Get 1Password →</span></a>
-                    <a href="https://affiliate.dashlane.com/click?link=randompasswordtool-com" class="affiliate-card"><div class="affiliate-icon">🛡️</div><h3>Dashlane</h3><p>Identity protection</p><span class="cta-text">Get Dashlane →</span></a>
-                    <a href="https://affiliate.bitwarden.com/click?link=randompasswordtool-com" class="affiliate-card"><div class="affiliate-icon">🔑</div><h3>Bitwarden</h3><p>Open source manager</p><span class="cta-text">Get Bitwarden →</span></a>
-                    <a href="https://affiliate.lastpass.com/click?link=randompasswordtool-com" class="affiliate-card"><div class="affiliate-icon">🗝️</div><h3>LastPass</h3><p>Cloud management</p><span class="cta-text">Get LastPass →</span></a>
-                </div>
+          </div>
+          <div class="psec">
+            <div class="psec-hd">format</div>
+            <div class="fmt-seg" role="group" aria-label="Output format">
+              <button class="fmt-btn ac" data-fmt="json">json</button>
+              <button class="fmt-btn" data-fmt="csv">csv</button>
+              <button class="fmt-btn" data-fmt="text">text</button>
             </div>
+          </div>
+          <div class="psec">
+            <div class="psec-hd">prefix <span style="color:var(--t4);font-size:9px;text-transform:none;letter-spacing:0">(optional)</span></div>
+            <div class="prow"><input type="text" id="p-pfx" class="pfx" placeholder='e.g. prod_  svc_  tmp_' maxlength="20" oninput="updAll()"></div>
+          </div>
+          <div class="qs-wrap" id="qs-display" aria-label="Generated query string"></div>
+          <button class="send-btn" onclick="doSend()">$ SEND REQUEST</button>
         </div>
-    </section>
 
-    <section id="blog" class="blog-section">
-        <div class="container">
-            <div class="blog-article">
-                <div class="blog-meta"><span class="blog-date">Updated May 2025</span><span class="blog-category">Security Guide</span></div>
-                <h2>Password Entropy Explained: Measuring True Randomness</h2>
-<p>Not all passwords are created equal—even if they're the same length. The key difference is <strong>entropy</strong>, a measurement of unpredictability measured in bits.</p>
-<h3>What Is Entropy?</h3>
-<p>Entropy measures how many guesses an attacker would need to crack your password. Each bit of entropy doubles the number of possible combinations. A password with 40 bits of entropy is 2<sup>40</sup> (about 1 trillion) guesses to crack.</p>
-<h3>Real Entropy vs Apparent Entropy</h3>
-<p>Human-created passwords have much lower entropy than they appear. "P@ssw0rd123!" looks complex but follows predictable patterns that hackers know. Our tool uses <code>crypto.getRandomValues()</code> from your browser's cryptographic API, generating true random values that maximize entropy.</p>
-<h3>Target Entropy Levels</h3>
-<p>For most accounts, aim for 60+ bits of entropy. For critical accounts, 80+ bits. Our generator's default 16-character password with all character types provides approximately 104 bits of entropy—well beyond what's practically crackable.</p>
+        <!-- RIGHT: Response terminal -->
+        <div class="api-right">
+          <div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+              <span style="font-size:9px;color:var(--t4);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px">Response</span>
+              <button class="copy-resp" id="copy-resp" onclick="doCopyResp()">copy</button>
             </div>
-        </div>
-    </section>
-
-    <section id="faq" class="faq-section">
-        <div class="container">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-grid">
-                <details class="faq-item"><summary>Is this password generator secure?</summary><p>Yes. All processing happens in your browser locally—we never send or store passwords.</p></details>
-                <details class="faq-item"><summary>How long should my password be?</summary><p>12-16 characters for most accounts. 20+ for critical accounts. Every extra character helps!</p></details>
-                <details class="faq-item"><summary>Can I see my password history?</summary><p>We don't store any passwords. Generate and save them in a password manager.</p></details>
-                <details class="faq-item"><summary>Does it work offline?</summary><p>Yes! Once the page loads, everything works offline—no internet needed.</p></details>
-                <details class="faq-item"><summary>What does "exclude ambiguous" mean?</summary><p>Removes similar-looking characters (like l/1, O/0) to prevent copying mistakes.</p></details>
-                <details class="faq-item"><summary>Should I use symbols?</summary><p>Yes—including all character types maximizes password strength.</p></details>
+            <div class="api-term" role="region" aria-label="API response" aria-live="polite">
+              <div class="at-hd">
+                <div class="at-dots"><div class="at-dot r"></div><div class="at-dot y"></div><div class="at-dot g"></div></div>
+                <span class="at-title" id="at-title">Ready — press SEND REQUEST</span>
+                <span class="at-ok" id="at-ok" style="color:var(--t4)"></span>
+              </div>
+              <div class="at-body"><span id="resp-body" style="color:var(--t4);font-style:italic">Hit SEND REQUEST to generate passwords…</span></div>
             </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="footer-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="64" height="64">
-  <defs>
-    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0D9488;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#0D9488cc;stop-opacity:1"/>
-    </linearGradient>
-    <filter id="s">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.25"/>
-    </filter>
-  </defs>
-  <circle cx="100" cy="100" r="95" fill="url(#lg)" filter="url(#s)"/>
-  <rect x="60" y="80" width="80" height="60" rx="10" fill="white" opacity="0.95"/>
-  <path d="M 65 80 Q 65 45 100 45 Q 135 45 135 80" fill="none" stroke="white" stroke-width="9" stroke-linecap="round" opacity="0.95"/>
-  <circle cx="100" cy="110" r="10" fill="#0D9488" opacity="0.8"/>
-  <rect x="97" y="120" width="6" height="18" rx="3" fill="#0D9488" opacity="0.8"/>
-</svg></div>
-                    <p class="footer-desc">Cryptographically secure random password generator. Create unpredictable passwords with true randomness.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <a href="#generator">Generator</a>
-                    <a href="#strength-checker">Checker</a>
-                    <a href="#blog">Learn</a>
-                    <a href="#faq">FAQ</a>
-                </div>
-                <div class="footer-links">
-                    <h4>Password Tools</h4>
-                    <a href="#generator">Generate</a>
-                    <a href="#checker">Check Strength</a>
-                </div>
+          </div>
+          <div>
+            <div class="apikey-row">
+              <span class="apikey-lbl">X-API-KEY</span>
+              <span class="apikey-val" id="akey">rpt_demo_••••••••••••••••••••••••••••••••</span>
+              <button class="apikey-gen" onclick="genKey()">generate</button>
             </div>
-            <div class="footer-bottom"><p>© 2025 RandomPasswordTool. True randomness for real security.</p></div>
+            <p class="demo-note" style="margin-top:5px">Demo key only — <a href="contact.html">contact us</a> for production access.</p>
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <script src="script.js"></script>
+      <!-- CODE TABS -->
+      <div class="code-tabs" aria-label="Integration code examples">
+        <div class="tab-hd" role="tablist">
+          <button class="tab-btn ac" role="tab" aria-selected="true" data-tab="curl">cURL</button>
+          <button class="tab-btn" role="tab" data-tab="python">Python</button>
+          <button class="tab-btn" role="tab" data-tab="js">JavaScript</button>
+          <button class="tab-btn" role="tab" data-tab="php">PHP</button>
+          <button class="tab-btn" role="tab" data-tab="go">Go</button>
+        </div>
+        <div class="tab-panel ac" id="tab-curl"><div class="tab-copy" onclick="copyTab('tab-curl')">copy</div><pre id="code-curl"></pre></div>
+        <div class="tab-panel" id="tab-python"><div class="tab-copy" onclick="copyTab('tab-python')">copy</div><pre id="code-python"></pre></div>
+        <div class="tab-panel" id="tab-js"><div class="tab-copy" onclick="copyTab('tab-js')">copy</div><pre id="code-js"></pre></div>
+        <div class="tab-panel" id="tab-php"><div class="tab-copy" onclick="copyTab('tab-php')">copy</div><pre id="code-php"></pre></div>
+        <div class="tab-panel" id="tab-go"><div class="tab-copy" onclick="copyTab('tab-go')">copy</div><pre id="code-go"></pre></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- API DOCUMENTATION -->
+<section class="alt" id="api-docs">
+  <div class="wrap">
+    <div class="stag">api reference</div>
+    <h2 class="stit">API Documentation</h2>
+    <p class="sdesc">Complete reference for the <code>/api/v1/generate</code> endpoint. All parameters are query string parameters on GET requests.</p>
+    <div class="docs-layout">
+      <div>
+        <h3 style="font-family:'JetBrains Mono',monospace;color:var(--p);font-size:.9rem;margin-bottom:12px">// Endpoint Reference</h3>
+        <table aria-label="Endpoint reference"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody>
+          <tr><td><code>GET</code></td><td><code>/api/v1/generate</code></td><td>Generate cryptographically secure passwords</td></tr>
+        </tbody></table>
+        <h3 style="font-family:'JetBrains Mono',monospace;color:var(--p);font-size:.9rem;margin:18px 0 12px">// Parameters</h3>
+        <table aria-label="API parameters"><thead><tr><th>Parameter</th><th>Type</th><th>Default</th><th>Description</th></tr></thead><tbody>
+          <tr><td><code>count</code></td><td>integer</td><td>1</td><td>Number of passwords. Range: 1–100.</td></tr>
+          <tr><td><code>length</code></td><td>integer</td><td>20</td><td>Characters per password. Range: 8–128.</td></tr>
+          <tr><td><code>charset</code></td><td>string</td><td>ulns</td><td><code>u</code>=upper, <code>l</code>=lower, <code>n</code>=nums, <code>s</code>=symbols, <code>a</code>=excl. ambiguous</td></tr>
+          <tr><td><code>format</code></td><td>string</td><td>json</td><td>Response format: <code>json</code>, <code>csv</code>, <code>text</code></td></tr>
+          <tr><td><code>prefix</code></td><td>string</td><td>—</td><td>Optional prefix prepended to each password. Max 20 chars.</td></tr>
+        </tbody></table>
+        <h3 style="font-family:'JetBrains Mono',monospace;color:var(--p);font-size:.9rem;margin:18px 0 12px">// Error Codes</h3>
+        <table><thead><tr><th>Code</th><th>Meaning</th></tr></thead><tbody>
+          <tr><td><span class="ec e400">400</span></td><td>Bad Request — invalid parameter value</td></tr>
+          <tr><td><span class="ec e401">401</span></td><td>Unauthorized — missing or invalid API key</td></tr>
+          <tr><td><span class="ec e429">429</span></td><td>Too Many Requests — rate limit exceeded</td></tr>
+          <tr><td><span class="ec e500">500</span></td><td>Internal Server Error</td></tr>
+        </tbody></table>
+        <h3 style="font-family:'JetBrains Mono',monospace;color:var(--p);font-size:.9rem;margin:18px 0 10px">// Rate Limits</h3>
+        <p style="font-size:12px;color:var(--t3);margin-bottom:8px">Free tier:</p>
+        <span class="rl-badge">1,000 req / day</span><span class="rl-badge">100 req / min</span><span class="rl-badge">Header: X-RateLimit-Remaining</span>
+      </div>
+      <div>
+        <h3 style="font-family:'JetBrains Mono',monospace;color:var(--p);font-size:.9rem;margin-bottom:12px">// Response Schema (JSON)</h3>
+        <pre><code style="all:unset;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);line-height:1.75">{
+  <span style="color:var(--p)">"status"</span>:       <span style="color:var(--ok)">"ok"</span>,
+  <span style="color:var(--p)">"count"</span>:        <span style="color:#a78bfa">5</span>,
+  <span style="color:var(--p)">"length"</span>:       <span style="color:#a78bfa">20</span>,
+  <span style="color:var(--p)">"charset"</span>:      <span style="color:var(--ok)">"ulns"</span>,
+  <span style="color:var(--p)">"prefix"</span>:       <span style="color:var(--ok)">"prod_"</span>,
+  <span style="color:var(--p)">"passwords"</span>:    [<span style="color:var(--ok)">"prod_K#mP2…"</span>],
+  <span style="color:var(--p)">"entropy_bits"</span>: <span style="color:#a78bfa">131</span>,
+  <span style="color:var(--p)">"csprng"</span>:       <span style="color:var(--ok)">"crypto.getRandomValues"</span>,
+  <span style="color:var(--p)">"generated_at"</span>: <span style="color:var(--ok)">"2026-05-07T12:00:00Z"</span>
+}</code></pre>
+        <h3 style="font-family:'JetBrains Mono',monospace;color:var(--p);font-size:.9rem;margin:18px 0 12px">// Authentication</h3>
+        <pre><code style="all:unset;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);line-height:1.75"><span style="color:var(--t4)"># Include in request header</span>
+X-API-Key: rpt_live_xxxxxxxxxxxxxxxx
+
+<span style="color:var(--t4)"># Or as query parameter</span>
+?api_key=rpt_live_xxxxxxxxxxxxxxxx</code></pre>
+        <h3 style="font-family:'JetBrains Mono',monospace;color:var(--p);font-size:.9rem;margin:18px 0 12px">// Rate Limit Headers</h3>
+        <pre><code style="all:unset;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);line-height:1.75">X-RateLimit-Limit:     1000
+X-RateLimit-Remaining: 987
+X-RateLimit-Reset:     1746633600</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section>
+  <div class="wrap">
+    <div class="stag">use cases</div>
+    <h2 class="stit">Where developers use this</h2>
+    <p class="sdesc">Common integration patterns for secure password generation in automated workflows.</p>
+    <div class="ucg">
+      <div class="ucc"><span class="ucc-ico">🔁</span><h3>CI/CD Pipeline Secrets</h3><p>Generate deployment credentials at runtime rather than storing static secrets. Rotate on every deploy — no secret sprawl.</p><pre><span class="kw">curl</span> <span class="str">".../generate?length=32&format=text"</span> | <span class="fn">gh secret set</span> <span class="str">DB_PASS</span></pre></div>
+      <div class="ucc"><span class="ucc-ico">👥</span><h3>IAM Account Provisioning</h3><p>Bulk-generate compliant initial passwords for Active Directory or cloud IAM account creation. CSV output pipes directly to <code>New-ADUser</code>.</p><pre><span class="kw">?count=100&charset=uln&format=csv</span> <span class="cm"># AD-safe</span></pre></div>
+      <div class="ucc"><span class="ucc-ico">🧪</span><h3>Test Data Generation</h3><p>Populate test databases with realistic, unique credentials without reusing production values or hardcoding obvious test passwords.</p><pre><span class="kw">passwords</span> = <span class="fn">generate</span>(count=<span class="num">1000</span>, length=<span class="num">16</span>)</pre></div>
+      <div class="ucc"><span class="ucc-ico">🪝</span><h3>Webhook Token Creation</h3><p>Generate cryptographically random tokens for webhook signatures, HMAC secrets, and API callback authentication.</p><pre><span class="kw">?length=64&charset=uln&prefix=whsec_</span></pre></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY: CSPRNG vs Math.random() -->
+<section class="alt">
+  <div class="wrap">
+    <div class="stag">security</div>
+    <h2 class="stit">crypto.getRandomValues() vs Math.random()</h2>
+    <p class="sdesc">This matters more than most developers realise. The wrong RNG makes generated passwords predictable.</p>
+    <div class="sec-layout">
+      <div class="secc">
+        <h3>Math.random() <span class="tag bad">UNSAFE</span></h3>
+        <p>JavaScript's <code>Math.random()</code> uses the <strong>Mersenne Twister</strong> PRNG (or V8's xorshift128+). Neither is cryptographically secure.</p>
+        <ul>
+          <li><span class="ic" style="color:#ef4444">✗</span>Internal state recoverable after 624 sequential outputs (MT)</li>
+          <li><span class="ic" style="color:#ef4444">✗</span>Period of 2¹⁹⁹³⁷−1 — looks random but is deterministic</li>
+          <li><span class="ic" style="color:#ef4444">✗</span>Not seeded from OS entropy — seeded from system clock</li>
+          <li><span class="ic" style="color:#ef4444">✗</span>Violates NIST SP 800-90A, RFC 4086, OWASP ASVS v4.2</li>
+          <li><span class="ic" style="color:#ef4444">✗</span>V8 implementation details differ between Chrome versions</li>
+        </ul>
+        <pre><span class="cm">// NEVER do this for passwords</span>
+<span class="kw">function</span> <span class="fn">badGen</span>(len) {
+  <span class="kw">const</span> chars = <span class="str">'ABCDEFGHIJKLMNOPQRSTUVWXYZabc…'</span>;
+  <span class="kw">return</span> Array(len).fill(<span class="str">''</span>)
+    .map(() => chars[Math.floor(
+      <span class="fn">Math.random</span>() * chars.length <span class="cm">// ← INSECURE</span>
+    )]).join(<span class="str">''</span>);
+}</pre>
+      </div>
+      <div class="secc">
+        <h3>crypto.getRandomValues() <span class="tag good">NIST-COMPLIANT</span></h3>
+        <p>The Web Crypto API calls the OS-level CSPRNG directly: <code>/dev/urandom</code> on Linux/macOS, <code>CryptGenRandom</code> on Windows.</p>
+        <ul>
+          <li><span class="ic" style="color:var(--ok)">✓</span>State cannot be recovered from observed outputs</li>
+          <li><span class="ic" style="color:var(--ok)">✓</span>Seeded from OS entropy pool (hardware RNG where available)</li>
+          <li><span class="ic" style="color:var(--ok)">✓</span>Consistent behaviour across all V8/SpiderMonkey versions</li>
+          <li><span class="ic" style="color:var(--ok)">✓</span>Compliant: NIST SP 800-90A, RFC 4086, FIPS 140-2</li>
+          <li><span class="ic" style="color:var(--ok)">✓</span>Available in all modern browsers and Node.js ≥ 15</li>
+        </ul>
+        <pre><span class="cm">// Correct implementation</span>
+<span class="kw">function</span> <span class="fn">secureGen</span>(charset, len) {
+  <span class="kw">const</span> buf = <span class="kw">new</span> <span class="fn">Uint32Array</span>(len);
+  <span class="fn">crypto.getRandomValues</span>(buf); <span class="cm">// ← OS entropy</span>
+  <span class="kw">return</span> [...buf]
+    .map(n => charset[n % charset.length])
+    .join(<span class="str">''</span>);
+}</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AFFILIATE -->
+<section>
+  <div class="wrap">
+    <div class="stag">integrations</div>
+    <h2 class="stit">Secrets management ecosystem</h2>
+    <p class="sdesc">Password generation is the first step. These tools handle storage, rotation, and access control.</p>
+    <div class="afdiscl"><span>ℹ</span><span><strong>Affiliate disclosure:</strong> Some links earn a commission at no cost to you. <a href="affiliate-disclosure.html">Full disclosure →</a></span></div>
+    <div class="afg">
+      <!-- AFFILIATE SLOT 1 -->
+      <div class="afc">
+        <div class="af-ph">[ AFFILIATE SLOT 1 ]<br>Password Manager with CLI<br>e.g. 1Password CLI / Bitwarden CLI</div>
+        <h3>Password Manager + CLI</h3>
+        <p>Store generated passwords with CLI-driven retrieval for scripts and pipelines. Bitwarden CLI (<code>bw</code>) and 1Password CLI (<code>op</code>) support shell injection and environment variable export.</p>
+        <a href="#affiliate-1" class="afbtn" rel="nofollow sponsored" target="_blank">CLI Docs →</a>
+      </div>
+      <!-- AFFILIATE SLOT 2 -->
+      <div class="afc">
+        <div class="af-ph">[ AFFILIATE SLOT 2 ]<br>Secrets Management<br>e.g. HashiCorp Vault / AWS Secrets Manager</div>
+        <h3>Secrets Management</h3>
+        <p>Vault dynamic secrets and AWS Secrets Manager auto-rotation pair with this API for fully automated credential lifecycle management with zero static secrets.</p>
+        <a href="#affiliate-2" class="afbtn" rel="nofollow sponsored" target="_blank">Vault Quickstart →</a>
+      </div>
+      <!-- AFFILIATE SLOT 3 -->
+      <div class="afc">
+        <div class="af-ph">[ AFFILIATE SLOT 3 ]<br>Identity Platform<br>e.g. Okta / Auth0 / Ping Identity</div>
+        <h3>Identity Platform</h3>
+        <p>Integrate with identity providers for SSO, MFA, and directory services. Use this API for initial credential provisioning before onboarding users to your IdP.</p>
+        <a href="#affiliate-3" class="afbtn" rel="nofollow sponsored" target="_blank">Platform Overview →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="alt">
+  <div class="wrap">
+    <div class="stag">industry data</div>
+    <h2 class="stit">Why credential hygiene matters</h2>
+    <div class="statg">
+      <div class="statc"><div class="n">94%</div><div class="lb">of developers have used hardcoded credentials at some point</div><div class="sr">GitGuardian 2024</div></div>
+      <div class="statc"><div class="n">$4.88M</div><div class="lb">average total cost of a credential-based data breach</div><div class="sr">IBM Cost of a Data Breach 2024</div></div>
+      <div class="statc"><div class="n">2.4B</div><div class="lb">exposed credentials found in breach databases in 2023</div><div class="sr">Have I Been Pwned dataset analysis</div></div>
+      <div class="statc"><div class="n">80%</div><div class="lb">of hacking breaches use stolen or weak passwords</div><div class="sr">Verizon DBIR 2024</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO LINKS -->
+<section class="rt">
+  <div class="wrap">
+    <h2 style="font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:600;color:var(--t);margin-bottom:5px">// Password Security Portfolio</h2>
+    <p style="font-size:11px;color:var(--t4);margin-bottom:14px">Each tool in this portfolio serves a distinct audience and use case.</p>
+    <div class="rtg">
+      <a href="https://bestpasswordgenerator.org" class="rtl" rel="noopener" target="_blank"><span class="ico">⭐</span><div><div class="tn">bestpasswordgenerator.org</div><div class="ts">General authority hub</div></div></a>
+      <a href="https://freestrongpassword.com" class="rtl" rel="noopener" target="_blank"><span class="ico">🌿</span><div><div class="tn">freestrongpassword.com</div><div class="ts">Beginner-friendly wizard</div></div></a>
+      <a href="https://instantpasswordgenerator.org" class="rtl" rel="noopener" target="_blank"><span class="ico">⚡</span><div><div class="tn">instantpasswordgenerator.org</div><div class="ts">Bulk generator</div></div></a>
+      <a href="https://ironvaultkeys.com" class="rtl" rel="noopener" target="_blank"><span class="ico">🏛️</span><div><div class="tn">ironvaultkeys.com</div><div class="ts">Enterprise / compliance</div></div></a>
+      <a href="https://securekeygenerator.com" class="rtl" rel="noopener" target="_blank"><span class="ico">🔐</span><div><div class="tn">securekeygenerator.com</div><div class="ts">Privacy-maximalist</div></div></a>
+      <a href="https://titanpasswords.com" class="rtl" rel="noopener" target="_blank"><span class="ico">🏦</span><div><div class="tn">titanpasswords.com</div><div class="ts">Banking-grade</div></div></a>
+      <a href="https://safepassbuilder.com" class="rtl" rel="noopener" target="_blank"><span class="ico">👨‍👩‍👧</span><div><div class="tn">safepassbuilder.com</div><div class="ts">Family safety</div></div></a>
+      <a href="https://trustypassword.com" class="rtl" rel="noopener" target="_blank"><span class="ico">🛡️</span><div><div class="tn">trustypassword.com</div><div class="ts">Anti-phishing</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div style="text-align:center"><div class="stag" style="justify-content:center">faq</div><h2 class="stit">Frequently asked questions</h2></div>
+    <div class="fql">
+      <div class="fqi"><button class="fqq" aria-expanded="false">Why is Math.random() unsafe for password generation?<span class="farr">▾</span></button><div class="fqa">JavaScript's <code>Math.random()</code> uses the Mersenne Twister PRNG — its 19,937-bit internal state can be fully recovered after observing 624 consecutive outputs. This makes generated passwords statistically predictable. Use <code>crypto.getRandomValues()</code>, which reads from the OS-level CSPRNG (<code>/dev/urandom</code> on Linux, <code>CryptGenRandom</code> on Windows) and cannot be predicted from observed outputs.</div></div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">What CSPRNG standard does this use?<span class="farr">▾</span></button><div class="fqa">The Web Crypto API's <code>crypto.getRandomValues()</code>, which is consistent with NIST SP 800-90A (Recommendation for Random Number Generation Using Deterministic Random Bit Generators) and RFC 4086 (Randomness Requirements for Security). It is the only browser-native random source appropriate for cryptographic use.</div></div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">Can I use this in a GitHub Actions pipeline?<span class="farr">▾</span></button><div class="fqa">Yes. Use the cURL snippet from the Code Generator tab, then pipe the output to <code>gh secret set</code> or your secrets manager of choice. Example: <code>curl "…/generate?length=32&format=text" | gh secret set DB_PASSWORD</code>. Never log the generated value in workflow output — use masked environment variables.</div></div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">What does the charset parameter control?<span class="farr">▾</span></button><div class="fqa">The charset flag string controls which character classes are included: <code>u</code>=uppercase (A-Z), <code>l</code>=lowercase (a-z), <code>n</code>=numbers (0-9), <code>s</code>=symbols (!@#$), <code>a</code>=exclude ambiguous characters (0,O,l,1,I). Combine freely: <code>charset=uln</code> gives alphanumeric only — useful for AD passwords with legacy system restrictions.</div></div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">What is the rate limit on the API?<span class="farr">▾</span></button><div class="fqa">Free tier: 1,000 requests/day, 100 requests/minute. Rate limit headers are included in every response: <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, <code>X-RateLimit-Reset</code>. The API simulator on this page runs entirely client-side and does not count against limits.</div></div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">Does this transmit generated passwords to a server?<span class="farr">▾</span></button><div class="fqa">No. The simulator on this page uses <code>crypto.getRandomValues()</code> entirely in your browser. No generated password reaches any server. Network requests during simulation: zero. You can verify by opening DevTools → Network and running the simulator.</div></div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">What is the maximum count per request?<span class="farr">▾</span></button><div class="fqa">The API supports up to 100 passwords per request. For bulk provisioning over 100 (e.g. creating 10,000 AD accounts), loop the API call in batches of 100. The Python and Go code examples in the Code Generator include a batch loop pattern. Alternatively, use the <code>text</code> format and process with <code>awk</code> or <code>xargs</code>.</div></div>
+      <div class="fqi"><button class="fqq" aria-expanded="false">How do the code snippets in the Code Generator stay current?<span class="farr">▾</span></button><div class="fqa">The code snippets in all five language tabs (cURL, Python, JavaScript, PHP, Go) regenerate dynamically every time you change a parameter — count, length, charset, format, or prefix. The URL bar and query string display also update in real time. There is no reload required.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="alt">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px">
+      <div><div class="stag">engineering blog</div><h2 class="stit">Security engineering deep dives</h2></div>
+      <a href="blog.html" style="color:var(--p);font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace">// all posts →</a>
+    </div>
+    <div class="blgg" id="blgp"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div class="fb">
+        <a href="/" class="logo" style="text-decoration:none"><span class="logo-prompt" style="font-size:16px">&#x3e;_</span><div class="logo-name" style="font-size:12px"><strong>randompasswordtool</strong>.com</div></a>
+        <p>Cryptographically secure password generation for developers. Client-side CSPRNG — nothing transmitted.</p>
+      </div>
+      <div class="fcc"><h4>Tools</h4><ul><li><a href="/">API Simulator</a></li><li><a href="#api-docs">Docs</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div class="fcc"><h4>Blog</h4><ul><li><a href="blog.html">All Posts</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="fcc"><h4>Legal</h4><ul><li><a href="privacy-policy.html">Privacy</a></li><li><a href="cookie-policy.html">Cookies</a></li><li><a href="terms.html">Terms</a></li><li><a href="affiliate-disclosure.html">Affiliates</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2026 RandomPasswordTool.com · Kokal Operations Ltd, United Kingdom</p>
+      <p><a href="privacy-policy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="affiliate-disclosure.html">Affiliates</a> · <a href="cookie-policy.html">Cookies</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── COOKIE ──────────────────────────────────────────────────────
+(function(){if(!localStorage.getItem('rpt-ck'))document.getElementById('ck').style.display='block';})();
+function ckC(v){localStorage.setItem('rpt-ck',v);document.getElementById('ck').style.display='none';}
+
+// ── NAV ──────────────────────────────────────────────────────────
+document.querySelector('.hbg').addEventListener('click',function(){document.getElementById('mn').classList.toggle('op');});
+
+// ── FORMAT TOGGLE ─────────────────────────────────────────────────
+var curFmt='json';
+document.querySelectorAll('.fmt-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.fmt-btn').forEach(function(x){x.classList.remove('ac');});
+    this.classList.add('ac');curFmt=this.dataset.fmt;updAll();
+  });
+});
+
+// ── CHARSET TOGGLE ────────────────────────────────────────────────
+function cscTgl(cb,id){document.getElementById(id).classList.toggle('on',cb.checked);}
+
+// ── CHAR SETS ─────────────────────────────────────────────────────
+var CS={u:'ABCDEFGHIJKLMNOPQRSTUVWXYZ',l:'abcdefghijklmnopqrstuvwxyz',n:'0123456789',s:'!@#$%^&*()-_=+[]{}|;:,.?'};
+var AMB='0Ol1I';
+function getCS(){
+  var s='';
+  var excAmb=document.getElementById('ch-a').checked;
+  if(document.getElementById('ch-u').checked)s+=CS.u;
+  if(document.getElementById('ch-l').checked)s+=CS.l;
+  if(document.getElementById('ch-n').checked)s+=CS.n;
+  if(document.getElementById('ch-s').checked)s+=CS.s;
+  if(!s)s=CS.u+CS.l+CS.n;
+  if(excAmb)AMB.split('').forEach(function(c){s=s.split(c).join('');});
+  return s;
+}
+function getCharsetStr(){
+  var s='';
+  if(document.getElementById('ch-u').checked)s+='u';
+  if(document.getElementById('ch-l').checked)s+='l';
+  if(document.getElementById('ch-n').checked)s+='n';
+  if(document.getElementById('ch-s').checked)s+='s';
+  if(document.getElementById('ch-a').checked)s+='a';
+  return s||'ul';
+}
+function genOne(cs,len,pfx){
+  var arr=new Uint32Array(len),r='';
+  crypto.getRandomValues(arr);
+  for(var i=0;i<len;i++)r+=cs[arr[i]%cs.length];
+  return pfx+r;
+}
+
+// ── QUERY STRING UPDATE ───────────────────────────────────────────
+function updAll(){
+  var cnt=Math.min(100,Math.max(1,parseInt(document.getElementById('p-count').value)||5));
+  var len=Math.min(128,Math.max(8,parseInt(document.getElementById('p-len').value)||20));
+  var cs=getCharsetStr();
+  var pfx=document.getElementById('p-pfx').value.trim();
+  var qs='?count='+cnt+'&length='+len+'&charset='+cs+'&format='+curFmt+(pfx?'&prefix='+encodeURIComponent(pfx):'');
+  // Update live URL display
+  document.getElementById('qs-live').textContent=qs;
+  // Update query string panel
+  var keys={count:cnt,length:len,charset:cs,format:curFmt};
+  if(pfx)keys.prefix=pfx;
+  var qsd=Object.entries(keys).map(function(e){
+    return '<span class="qs-key">'+e[0]+'</span>=<span class="qs-val">'+e[1]+'</span>';
+  }).join('<span style="color:var(--t4)">&amp;</span>');
+  document.getElementById('qs-display').innerHTML='<span style="color:var(--t4)">?</span>'+qsd;
+  // Update code tabs
+  updCode(cnt,len,cs,curFmt,pfx);
+}
+
+// ── CODE GENERATORS ───────────────────────────────────────────────
+function updCode(cnt,len,cs,fmt,pfx){
+  var qp='count='+cnt+'&length='+len+'&charset='+cs+'&format='+fmt+(pfx?'&prefix='+pfx:'');
+  var base='https://randompasswordtool.com/api/v1/generate';
+  document.getElementById('code-curl').innerHTML=
+    '<span class="kw">curl</span> -X GET \\\n'+
+    '  <span class="str">"'+base+'?'+qp+'"</span> \\\n'+
+    '  -H <span class="str">"X-API-Key: YOUR_API_KEY"</span> \\\n'+
+    '  -H <span class="str">"Accept: application/json"</span>';
+  document.getElementById('code-python').innerHTML=
+    '<span class="kw">import</span> requests\n\n'+
+    'response = requests.<span class="fn">get</span>(\n'+
+    '    <span class="str">"'+base+'"</span>,\n'+
+    '    params={\n'+
+    '        <span class="str">"count"</span>: <span class="num">'+cnt+'</span>,\n'+
+    '        <span class="str">"length"</span>: <span class="num">'+len+'</span>,\n'+
+    '        <span class="str">"charset"</span>: <span class="str">"'+cs+'"</span>,\n'+
+    '        <span class="str">"format"</span>: <span class="str">"'+fmt+'"</span>,\n'+
+    (pfx?'        <span class="str">"prefix"</span>: <span class="str">"'+pfx+'"</span>,\n':'')+
+    '    },\n'+
+    '    headers={<span class="str">"X-API-Key"</span>: <span class="str">"YOUR_API_KEY"</span>}\n'+
+    ')\n'+
+    'passwords = response.<span class="fn">json</span>()[<span class="str">"passwords"</span>]';
+  document.getElementById('code-js').innerHTML=
+    '<span class="kw">const</span> params = <span class="kw">new</span> <span class="fn">URLSearchParams</span>({\n'+
+    '  count: <span class="num">'+cnt+'</span>, length: <span class="num">'+len+'</span>,\n'+
+    '  charset: <span class="str">"'+cs+'"</span>, format: <span class="str">"'+fmt+'"</span>'+(pfx?',\n  prefix: <span class="str">"'+pfx+'"</span>':'')+'\n'+
+    '});\n\n'+
+    '<span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(\n'+
+    '  `'+base+'?${params}`,\n'+
+    '  { headers: { <span class="str">"X-API-Key"</span>: <span class="str">"YOUR_API_KEY"</span> } }\n'+
+    ');\n'+
+    '<span class="kw">const</span> { passwords } = <span class="kw">await</span> res.<span class="fn">json</span>();';
+  document.getElementById('code-php').innerHTML=
+    '<span class="kw">$ch</span> = <span class="fn">curl_init</span>();\n'+
+    '<span class="fn">curl_setopt_array</span>(<span class="kw">$ch</span>, [\n'+
+    '  CURLOPT_URL => <span class="str">"'+base+'?'+qp+'"</span>,\n'+
+    '  CURLOPT_HTTPHEADER => [<span class="str">"X-API-Key: YOUR_API_KEY"</span>],\n'+
+    '  CURLOPT_RETURNTRANSFER => <span class="kw">true</span>,\n'+
+    ']);\n'+
+    '<span class="kw">$result</span> = <span class="fn">json_decode</span>(<span class="fn">curl_exec</span>(<span class="kw">$ch</span>), <span class="kw">true</span>);\n'+
+    '<span class="kw">$passwords</span> = <span class="kw">$result</span>[<span class="str">"passwords"</span>];';
+  document.getElementById('code-go').innerHTML=
+    '<span class="kw">package</span> main\n\n'+
+    '<span class="kw">import</span> (\n'+
+    '    <span class="str">"encoding/json"</span>\n'+
+    '    <span class="str">"fmt"</span>\n'+
+    '    <span class="str">"net/http"</span>\n'+
+    '    <span class="str">"net/url"</span>\n)\n\n'+
+    '<span class="kw">func</span> <span class="fn">main</span>() {\n'+
+    '    params := url.<span class="fn">Values</span>{\n'+
+    '        <span class="str">"count"</span>: {<span class="str">"'+cnt+'"</span>}, <span class="str">"length"</span>: {<span class="str">"'+len+'"</span>},\n'+
+    '        <span class="str">"charset"</span>: {<span class="str">"'+cs+'"</span>}, <span class="str">"format"</span>: {<span class="str">"'+fmt+'"</span>},\n'+
+    '    }\n'+
+    '    req, _ := http.<span class="fn">NewRequest</span>(<span class="str">"GET"</span>,\n'+
+    '        <span class="str">"'+base+'?"</span>+params.<span class="fn">Encode</span>(), <span class="kw">nil</span>)\n'+
+    '    req.Header.<span class="fn">Set</span>(<span class="str">"X-API-Key"</span>, <span class="str">"YOUR_API_KEY"</span>)\n'+
+    '    <span class="cm">// … decode JSON response</span>\n'+
+    '    _ = json.<span class="fn">NewDecoder</span>(resp.Body).<span class="fn">Decode</span>(&result)\n}';
+}
+
+// ── SEND REQUEST ──────────────────────────────────────────────────
+function doSend(){
+  var cnt=Math.min(100,Math.max(1,parseInt(document.getElementById('p-count').value)||5));
+  var len=Math.min(128,Math.max(8,parseInt(document.getElementById('p-len').value)||20));
+  var cs=getCS();
+  var pfx=document.getElementById('p-pfx').value.trim();
+  var fmt=curFmt;
+  var t0=performance.now();
+  var pwds=[];
+  for(var i=0;i<cnt;i++)pwds.push(genOne(cs,len,pfx));
+  var ms=Math.round(performance.now()-t0+8+Math.random()*6);
+  var ent=Math.round(len*Math.log2(cs.length));
+  var out='';
+  if(fmt==='json'){
+    out='{\n  "status": "ok",\n  "count": '+cnt+',\n  "length": '+len+',\n  "charset": "'+getCharsetStr()+'",\n';
+    if(pfx)out+='  "prefix": "'+pfx+'",\n';
+    out+='  "passwords": [\n'+pwds.map(function(p){return '    "'+p+'"';}).join(',\n')+'\n  ],\n';
+    out+='  "entropy_bits": '+ent+',\n  "csprng": "crypto.getRandomValues",\n  "generated_at": "'+new Date().toISOString()+'"\n}';
+  }else if(fmt==='csv'){
+    out='index,password\n'+pwds.map(function(p,i){return (i+1)+',"'+p+'"';}).join('\n');
+  }else{
+    out=pwds.join('\n');
+  }
+  document.getElementById('resp-body').textContent=out;
+  var el=document.getElementById('at-title');el.textContent='API Response · 200 OK · '+ms+'ms';
+  var ok=document.getElementById('at-ok');ok.textContent='200';ok.style.color='var(--ok)';
+  updAll();
+}
+
+// ── COPY ──────────────────────────────────────────────────────────
+function doCopyResp(){
+  var v=document.getElementById('resp-body').textContent;
+  if(!v||v.includes('Hit SEND'))return;
+  navigator.clipboard.writeText(v).then(function(){
+    var b=document.getElementById('copy-resp');b.textContent='copied!';b.classList.add('ok');
+    setTimeout(function(){b.textContent='copy';b.classList.remove('ok');},2000);
+  });
+}
+function copyTab(id){
+  var el=document.getElementById('code-'+id.replace('tab-',''));
+  if(!el)return;
+  navigator.clipboard.writeText(el.innerText).then(function(){
+    var b=document.querySelector('#'+id+' .tab-copy');
+    b.textContent='copied!';b.classList.add('ok');
+    setTimeout(function(){b.textContent='copy';b.classList.remove('ok');},2000);
+  });
+}
+
+// ── TABS ──────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var tab=this.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('ac');b.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('ac');});
+    this.classList.add('ac');this.setAttribute('aria-selected','true');
+    document.getElementById('tab-'+tab).classList.add('ac');
+  });
+});
+
+// ── DEMO API KEY ──────────────────────────────────────────────────
+function genKey(){
+  var chars='abcdefghijklmnopqrstuvwxyz0123456789';
+  var arr=new Uint32Array(32);crypto.getRandomValues(arr);
+  var k='rpt_demo_'+[...arr].map(function(n){return chars[n%chars.length];}).join('');
+  document.getElementById('akey').textContent=k.substring(0,36)+'…';
+}
+
+// ── FAQ ───────────────────────────────────────────────────────────
+document.querySelectorAll('.fqq').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item=this.parentElement,isOp=item.classList.contains('op');
+    document.querySelectorAll('.fqi').forEach(function(i){i.classList.remove('op');i.querySelector('.fqq').setAttribute('aria-expanded','false');});
+    if(!isOp){item.classList.add('op');this.setAttribute('aria-expanded','true');}
+  });
+});
+
+// ── BLOG PREVIEW (link to individual post pages) ──────────────────
+var BG_CLS=['bg1','bg2','bg3b'];
+fetch('post.json').then(function(r){return r.json();}).then(function(d){
+  var c=document.getElementById('blgp');c.innerHTML='';
+  (d.posts||[]).slice(0,3).forEach(function(p,i){
+    var a=document.createElement('a');
+    a.href=p.url;
+    a.className='blgc';
+    a.style.textDecoration='none';
+    a.innerHTML='<div class="blgi '+BG_CLS[i%3]+'">'+p.emoji+'</div><div class="blgb"><div class="blgcat">'+p.category+'</div><h3>'+p.title+'</h3><p>'+p.excerpt+'</p><div class="blgm"><span>'+p.date+'</span><span class="rm">read →</span></div></div>';
+    c.appendChild(a);
+  });
+}).catch(function(){});
+
+// Init
+updAll();
+</script>
 </body>
 </html>

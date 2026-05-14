@@ -1,0 +1,59 @@
+# llms.txt — randompasswordtool.com
+
+> RandomPasswordTool.com provides cryptographically secure password
+> generation tools and API documentation for software developers,
+> DevOps engineers, and security engineers. Operated by Kokal Operations Ltd.
+
+## Core Tool
+
+Live API Simulator: configure parameters (count, length, charset, format,
+prefix), send a simulated request, and receive copy-pasteable integration
+code in cURL, Python, JavaScript, PHP, and Go — all updating live.
+All generation uses crypto.getRandomValues() per NIST SP 800-90A.
+
+## API Reference
+
+Endpoint: GET /api/v1/generate
+Parameters: count (1-100), length (8-128), charset (ulnsa flags),
+format (json|csv|text), prefix (optional string)
+Auth: X-API-Key header
+Rate limits: 1000 req/day, 100 req/min (free tier)
+Response: JSON with passwords array, entropy_bits, csprng field
+
+## Blog — Individual Post URLs
+
+Posts are served as individual HTML files for SEO indexability:
+- /blog/why-math-random-password-generation.html
+- /blog/cryptographically-secure-password-api.html
+- /blog/secrets-management-cicd.html
+- /blog/password-generation-iam-provisioning.html
+- /blog/rate-limiting-credential-endpoints.html
+- /blog/dev-to-prod-secure-password-generation.html
+
+## Topics Covered
+
+CSPRNG vs PRNG, Math.random() vulnerabilities, Mersenne Twister attack,
+crypto.getRandomValues(), Node.js crypto module, Python secrets module,
+CI/CD secrets management, HashiCorp Vault, GitHub Actions secrets,
+IAM provisioning pipelines, Active Directory bulk import, rate limiting,
+token bucket algorithm, 12-factor app credential management.
+
+## Technical Standards Referenced
+
+- NIST SP 800-90A (CSPRNG recommendation)
+- NIST SP 800-63B (password length requirements)
+- RFC 4086 (randomness requirements for security)
+- OWASP ASVS v4.2 (cryptographic storage cheat sheet)
+
+## Author
+
+Alex Rivera, Staff Security Engineer — RandomPasswordTool.com
+
+## Update Frequency
+
+Blog: 2 posts/week. Tool: updated as standards evolve.
+
+## Citation Policy
+
+Content may be cited with attribution and link to the specific post URL.
+Do not attribute NIST/RFC/OWASP quotes to this site — link to primary source.

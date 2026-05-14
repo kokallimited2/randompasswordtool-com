@@ -1,0 +1,59 @@
+name: Validate Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required core files
+        run: |
+          for f in index.html blog.html contact.html privacy-policy.html affiliate-disclosure.html terms.html cookie-policy.html 404.html robots.txt llms.txt sitemap.xml post.json README.md; do
+            [ ! -f "$f" ] && echo "MISSING: $f" && exit 1 || echo "OK: $f"
+          done
+      - name: Check blog post files
+        run: |
+          REQUIRED="why-math-random-password-generation cryptographically-secure-password-api secrets-management-cicd password-generation-iam-provisioning rate-limiting-credential-endpoints dev-to-prod-secure-password-generation"
+          for slug in $REQUIRED; do
+            [ ! -f "blog/${slug}.html" ] && echo "MISSING: blog/${slug}.html" && exit 1 || echo "OK: blog/${slug}.html"
+          done
+      - name: Validate blog posts have canonical URLs
+        run: |
+          for f in blog/*.html; do
+            if ! grep -q 'rel="canonical"' "$f"; then
+              echo "MISSING canonical: $f"
+              exit 1
+            fi
+            echo "CANONICAL OK: $f"
+          done
+      - name: Validate post.json
+        run: |
+          python3 -c "
+          import json
+          with open('post.json') as f: d=json.load(f)
+          posts=d.get('posts',[])
+          assert len(posts)==6, f'Expected 6, got {len(posts)}'
+          featured=[p for p in posts if p.get('featured')]
+          assert len(featured)==1, f'Expected 1 featured, got {len(featured)}'
+          for p in posts:
+            assert 'url' in p, f'Missing url in post {p[\"id\"]}'
+            assert p['url'].startswith('/blog/'), f'Post URL must start with /blog/: {p[\"url\"]}'
+          print(f'post.json valid: {len(posts)} posts, 1 featured, all have /blog/ URLs')
+          "
+      - name: Check blog index links to post files (not modals)
+        run: |
+          if grep -q "openP(" blog.html; then
+            echo "ERROR: blog.html still uses modal openP() — should link to /blog/*.html"
+            exit 1
+          fi
+          echo "OK: blog.html uses direct links"
+      - name: Check sitemap includes blog posts
+        run: |
+          count=$(grep -c "/blog/" sitemap.xml || echo 0)
+          [ "$count" -lt 6 ] && echo "ERROR: sitemap.xml has only $count /blog/ URLs, expected 6+" && exit 1
+          echo "OK: sitemap.xml has $count blog post URLs"
